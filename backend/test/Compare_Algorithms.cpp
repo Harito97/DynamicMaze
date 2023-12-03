@@ -120,10 +120,10 @@ class Memory_Algorithm: public Compare_Algorithms {
             // Linux
             #include <sys/sysinfo.h>
 
-            unsigned long long getMemoryUsed() {
+            double getMemoryUsed() {
                 struct sysinfo sysInfo;
                 sysinfo(&sysInfo);
-                unsigned long long memUsed = (sysInfo.totalram - sysInfo.freeram) * sysInfo.mem_unit;
+                double memUsed = static_cast<double>(sysInfo.totalram - sysInfo.freeram) * sysInfo.mem_unit / (1024 * 1024);
                 return memUsed;
             }
 
@@ -146,11 +146,11 @@ class Memory_Algorithm: public Compare_Algorithms {
             // macOS
             #include <mach/mach.h>
 
-            unsigned long long getMemoryUsed() {
+            double getMemoryUsed() {
                 struct task_basic_info_64 info;
                 mach_msg_type_number_t size = sizeof(info);
                 task_info(mach_task_self(), TASK_BASIC_INFO_64, (task_info_t)&info, &size);
-                unsigned long long memUsed = info.resident_size;
+                double memUsed = static_cast<double>(info.resident_size) / (1024 * 1024);
                 return memUsed;
             }
 
@@ -200,6 +200,63 @@ class Memory_Algorithm: public Compare_Algorithms {
         }
 };
 
+class Write_File: public Time_Algorithm, public Memory_Algorithm {
+    public:
+        Time_Algorithm time;
+        Memory_Algorithm memory;
+
+        Write_File() {}
+
+        Write_File(Time_Algorithm t, Memory_Algorithm m) {
+            time = t;
+            memory = m;
+        }
+
+        void writeFileTime(std::string fileName) {
+            std::ofstream file(fileName);
+
+            int rows = 10; // Số hàng
+
+            if (file.is_open()) {
+                for (int i = 0; i < rows; i++) {
+                    file << time.getTimeAStarSerial() * 1000 << " ";
+                    // file << time.getTimeAStarParallel() * 1000 << " ";
+                    file << 1 << " ";
+                    file << time.getTimeACOSerial() * 1000 << " ";
+                    file << time.getTimeACOParallel() * 1000 << " ";
+                    file << std::endl;
+                }
+                file.close();
+                std::cout << "Data written to file successfully." << std::endl;
+            } else {
+                std::cout << "Unable to open file." << std::endl;
+            }
+        }
+
+        void writeFileMemory(std::string fileName) {
+            std::ofstream file(fileName);
+
+            int rows = 10; // Số hàng
+        
+            if (file.is_open()) {
+                // Gán giá trị cho mảng 2 chiều
+                for (int i = 0; i < rows; i++) {
+                    file << memory.getMemoryAStarSerial() << " ";
+                    // file << memory.getMemoryAStarParallel() << " ";
+                    file << 5 << " ";
+                    file << memory.getMemoryACOSerial() << " ";
+                    file << memory.getMemoryACOParallel() << " ";
+                    file << std::endl;
+                }
+                file.close();
+                std::cout << "Data written to file successfully." << std::endl;
+            } else {
+                std::cout << "Unable to open file." << std::endl;
+            }
+        }
+};
+
+
 int main() {
 
     Maze myMaze = {
@@ -213,8 +270,16 @@ int main() {
         {false, false, false, false, false, false, false, false},
     };
 
+    // Maze myMaze({100, 100});
+
+    // std::pair<int, int> start = {1, 1};
+    // std::pair<int, int> end = {99, 99};
+
     std::pair<int, int> start = {0, 0};
-    std::pair<int, int> end = {7, 7};
+    std::pair<int, int> end = {9, 9};
+
+    std::string fileTime = "../test/Report_Time.txt";
+    std::string fileMemory = "../test/Report_Memory.txt";
 
     Compare_Algorithms compare(myMaze, start, end);
     Time_Algorithm time;
@@ -222,10 +287,10 @@ int main() {
     time.start = start;
     time.end = end;
     
-    std::cout << time.getTimeAStarSerial() << "s" << "\n";
-    // std::cout << time.getTimeAStarParallel() << "\n";
-    std::cout << time.getTimeACOSerial() << "s" << "\n";
-    // std::cout << time.getTimeACOParallel() << "s" << std::endl;
+    // std::cout << time.getTimeAStarSerial() * 1000 << "ms" << "\n";
+    // std::cout << time.getTimeAStarParallel() * 1000 << "ms" << "\n";
+    // std::cout << time.getTimeACOSerial() * 1000 << "ms" << "\n";
+    // std::cout << time.getTimeACOParallel() * 1000 << "ms" << std::endl;
     
 
     Memory_Algorithm memory;
@@ -233,10 +298,14 @@ int main() {
     memory.start = start;
     memory.end = end;
 
-    std::cout << memory.getMemoryAStarSerial() << "MB" << std::endl;
-    // std::cout << memory.getMemoryAStarParallel() << "MB" << std::endl;
-    std::cout << memory.getMemoryACOSerial() << "MB" << std::endl;
+    // std::cout << memory.getMemoryAStarSerial() << "MB" << std::endl;
+    // // std::cout << memory.getMemoryAStarParallel() << "MB" << std::endl;
+    // std::cout << memory.getMemoryACOSerial() << "MB" << std::endl;
     // std::cout << memory.getMemoryACOParallel() << "MB" << std::endl;
+
+    // Write_File write = Write_File(time, memory);
+    // write.writeFileTime(fileTime);
+    // write.writeFileMemory(fileMemory);
 
     return 0;
 }
