@@ -287,7 +287,7 @@ int main() {
     time.start = start;
     time.end = end;
     
-    // std::cout << time.getTimeAStarSerial() * 1000 << "ms" << "\n";
+    std::cout << time.getTimeAStarSerial() * 1000 << "ms" << "\n";
     // std::cout << time.getTimeAStarParallel() * 1000 << "ms" << "\n";
     // std::cout << time.getTimeACOSerial() * 1000 << "ms" << "\n";
     // std::cout << time.getTimeACOParallel() * 1000 << "ms" << std::endl;
