@@ -220,8 +220,7 @@ class Write_File: public Time_Algorithm, public Memory_Algorithm {
             if (file.is_open()) {
                 for (int i = 0; i < rows; i++) {
                     file << time.getTimeAStarSerial() * 1000 << " ";
-                    // file << time.getTimeAStarParallel() * 1000 << " ";
-                    file << 1 << " ";
+                    file << time.getTimeAStarParallel() * 1000 << " ";
                     file << time.getTimeACOSerial() * 1000 << " ";
                     file << time.getTimeACOParallel() * 1000 << " ";
                     file << std::endl;
@@ -242,8 +241,7 @@ class Write_File: public Time_Algorithm, public Memory_Algorithm {
                 // Gán giá trị cho mảng 2 chiều
                 for (int i = 0; i < rows; i++) {
                     file << memory.getMemoryAStarSerial() << " ";
-                    // file << memory.getMemoryAStarParallel() << " ";
-                    file << 5 << " ";
+                    file << memory.getMemoryAStarParallel() << " ";
                     file << memory.getMemoryACOSerial() << " ";
                     file << memory.getMemoryACOParallel() << " ";
                     file << std::endl;
@@ -303,9 +301,9 @@ int main() {
     // std::cout << memory.getMemoryACOSerial() << "MB" << std::endl;
     // std::cout << memory.getMemoryACOParallel() << "MB" << std::endl;
 
-    // Write_File write = Write_File(time, memory);
-    // write.writeFileTime(fileTime);
-    // write.writeFileMemory(fileMemory);
+    Write_File write = Write_File(time, memory);
+    write.writeFileTime(fileTime);
+    write.writeFileMemory(fileMemory);
 
     return 0;
 }
