@@ -301,9 +301,9 @@ int main() {
     // std::cout << memory.getMemoryACOSerial() << "MB" << std::endl;
     // std::cout << memory.getMemoryACOParallel() << "MB" << std::endl;
 
-    // Write_File write = Write_File(time, memory);
-    // write.writeFileTime(fileTime);
-    // write.writeFileMemory(fileMemory);
+    Write_File write = Write_File(time, memory);
+    write.writeFileTime(fileTime);
+    write.writeFileMemory(fileMemory);
 
     return 0;
 }
