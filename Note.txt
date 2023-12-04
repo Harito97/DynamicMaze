@@ -1,6 +1,53 @@
 Deadline nop toan bo bao cao: 23h00. Thu 5 07/12/2023
+Chieu chu nhat thuyet trinh nguoc lai tu 18 -> 17 -> 16 -> ...
+***Luu y: Chi duoc trinh bay trong "20p" - moi ong trinh bay 5p***
+***Ky nang thuyet trinh la quan trong: 
+    Noi sao cho biet khi bi hoi tra loi duoc de biet la co lam: tra loi dung trong tam cau hoi cua thay 
+    Noi bang van ban, co van ban de mk noi theo 
+    Luc lam la phai phan cong ro rang
+
 1. Deadline (Eg: luu y truoc khi bao cao)
 2. Khong mat trat tu (Eg: luu y trong gio hoc, luu y trong luc bao cao)
 
 Thay vi: copy dang CV tren mang -> nhan tin truc tiep hoi thay
 Chon Thong tin tu tren xuong duoi - danh trung y nha tuyen dung
+
+San pham nop qua email: nguyenth.ntu@gmail.com
+    |___Bao cao BTL (docx, pdf): 
+            1. Abstract (gian luoc bao cao):
+            2. Introduction (gioi thieu):
+                Lam gi - ung dung, ly thuyet
+                Cac phuong phap truoc do, diem manh, diem yeu - viet 1-2 dong
+                Phuong phap mk dua ra, phuong phap nay giai quyet duoc van de gi, khac phuc diem yeu gi
+                Thi nghiem, ket qua cua mk ntn 
+            3. Review: 
+                Chi tiet cac phuong phap khac
+                Thi nghiem cua phuong phap do cho ket qua nhu the nao
+                Phan tich ky, chi tiet diem manh, diem yeu (do phuc tap)
+            4. Method:
+                Background topic 
+                Phuong phap giai quyet cu the 
+                Phan tich thiet ke cua mk 
+                    Diagram 
+				    Sequence
+				    DB design
+                GUI
+                    Luong thuc hien ...
+                    Thuc hien ra sao
+            5. Thi nghiem:
+                So sanh voi KQ cac phuong phap khac, dataset la gi?
+                Cac bieu do so sanh
+                Giai thich
+                    Ly thuyet
+                    Do thi
+                    -> Cai nao tot hon -> Why
+            6. Ket luan:
+                Tong ket
+                    Lam duoc gi roi
+                    Ket qua
+			    Limitation + room for development
+                Huong phat trien (the hien tinh hoa nhung gi mk noi)
+    |___Huong dan su dung (docx, pdf)
+    |___Huong dan cai dat (docx, pdf)
+    |___Source code (build va run duoc)
+    |___Slide thuyet trinh (Phan cong cu the cho tung thanh vien)
