@@ -11,34 +11,38 @@
 #include <climits>
 #include "../include/HashPairAStar.h"
 #include "../Maze.cpp"
+#include <tbb/concurrent_priority_queue.h>
+#include <tbb/concurrent_queue.h>
+#include <tbb/concurrent_unordered_map.h>
+#include <tbb/concurrent_vector.h>
 
-class thread_state
-{
-public:
+// class thread_state
+// {
+// public:
 
-    std::priority_queue<std::tuple<int, int, std::pair<int, int>>,
-                        std::vector<std::tuple<int, int, std::pair<int, int>>>,
-                        std::greater<std::tuple<int, int, std::pair<int, int>>>>
-        open_list;
+//     std::priority_queue<std::tuple<int, int, std::pair<int, int>>,
+//                         std::vector<std::tuple<int, int, std::pair<int, int>>>,
+//                         std::greater<std::tuple<int, int, std::pair<int, int>>>>
+//         open_list;
 
-    std::queue<std::pair<std::tuple<int, int, std::pair<int, int>>, int>> wait_list;
+//     std::queue<std::pair<std::tuple<int, int, std::pair<int, int>>, int>> wait_list;
 
-    std::vector<thread_state *> neighbors;
+//     std::vector<thread_state *> neighbors;
 
-    std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> a_path;
+//     std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> a_path;
 
-    omp_lock_t lock;
+//     omp_lock_t lock;
 
-public:
-    thread_state()
-    {
-        omp_init_lock(&lock);
-    }
-};
+// public:
+//     thread_state()
+//     {
+//         omp_init_lock(&lock);
+//     }
+// };
 
 class AStar
 {
-// public:
+    // public:
     // struct HashPairAStar
     // {
     //     template <class T1, class T2>
@@ -118,276 +122,395 @@ public:
         return std::make_pair(path, fwd_path);
     }
 
+    // private:
+    //     std::vector<std::tuple<int, int, std::pair<int, int>>>
+    //     start_expand(Maze &maze, std::pair<int, int> start, std::pair<int, int> end,
+    //                  std::vector<std::vector<int>> &g_score,
+    //                  std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> &a_path,
+    //                  int num_threads)
+    //     {
+    //         std::priority_queue<std::tuple<int, int, std::pair<int, int>>,
+    //                             std::vector<std::tuple<int, int, std::pair<int, int>>>,
+    //                             std::greater<std::tuple<int, int, std::pair<int, int>>>>
+    //             open;
+
+    //         open.push(std::make_tuple(heuristic(start, end), heuristic(start, end), start));
+    //         std::vector<std::tuple<int, int, std::pair<int, int>>> expand_list;
+
+    //         while (!open.empty())
+    //         {
+    //             auto current = std::get<2>(open.top());
+    //             open.pop();
+
+    //             if (current == end)
+    //             {
+    //                 return std::vector<std::tuple<int, int, std::pair<int, int>>>();
+    //             }
+
+    //             auto neighbors = maze.getNeighbors(current);
+
+    //             for (const auto &neighbor : neighbors)
+    //             {
+    //                 int temp_g_score = g_score[current.first][current.second] + 1;
+    //                 int temp_f_score = temp_g_score + heuristic(neighbor, end);
+
+    //                 if (temp_g_score < g_score[neighbor.first][neighbor.second])
+    //                 {
+    //                     g_score[neighbor.first][neighbor.second] = temp_g_score;
+    //                     // f_score[neighbor.first][neighbor.second] = temp_f_score;
+    //                     open.push(std::make_tuple(temp_f_score, heuristic(neighbor, end), neighbor));
+    //                     a_path[neighbor] = current;
+    //                     if (open.size() == num_threads)
+    //                     {
+    //                         while (!open.empty())
+    //                         {
+    //                             expand_list.push_back(open.top());
+    //                             open.pop();
+    //                         }
+    //                         return expand_list;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         while (!open.empty())
+    //         {
+    //             expand_list.push_back(open.top());
+    //             open.pop();
+    //         }
+    //         return expand_list;
+    //     }
+
+    // public:
+    //     std::pair<std::vector<std::pair<int, int>>, std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar>>
+    //     solve_parallel(Maze &maze, std::pair<int, int> start, std::pair<int, int> end, int num_threads = omp_get_max_threads())
+    //     {
+    //         std::vector<std::vector<int>> g_score(maze.getHeight(), std::vector<int>(maze.getWidth(), INT_MAX));
+    //         g_score[start.first][start.second] = 0;
+
+    //         // std::vector<std::vector<int>> f_score(maze.getHeight(), std::vector<int>(maze.getWidth(), INT_MAX));
+    //         // f_score[start.first][start.second] = heuristic(start, end);
+
+    //         std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> a_path;
+
+    //         std::atomic<int> open_node_num;
+    //         thread_state *thread_array;
+
+    //         auto node_list = start_expand(maze, start, end, g_score, a_path, num_threads);
+
+    //         const int busy_threshold = 100;
+
+    //         if (node_list.empty())
+    //         {
+    //             std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path;
+    //             auto cell = end;
+    //             std::vector<std::pair<int, int>> path = {end};
+
+    //             while (cell != start)
+    //             {
+    //                 fwd_path[a_path[cell]] = cell;
+    //                 path.insert(path.begin(), a_path[cell]);
+    //                 cell = a_path[cell];
+    //             }
+
+    //             return std::make_pair(path, fwd_path);
+    //         }
+    //         else
+    //         {
+    //             thread_array = new thread_state[num_threads];
+    //             srand(time(NULL));
+    //             for (int i = 0; i < node_list.size(); ++i)
+    //             {
+    //                 int thread_id = rand() % num_threads;
+    //                 thread_array[thread_id].open_list.push(node_list[i]);
+    //                 thread_array[thread_id].a_path = a_path;
+    //             }
+    //             open_node_num = node_list.size();
+
+    //             int bit_num = (int)log2(num_threads);
+    //             for (int i = 0; i < num_threads; ++i)
+    //             {
+    //                 for (int j = 0; j < bit_num; ++j)
+    //                 {
+    //                     int neighbor = i ^ (1 << j);
+    //                     thread_array[i].neighbors.push_back(&thread_array[neighbor]);
+    //                 }
+    //             }
+    //             omp_set_num_threads(num_threads);
+    //         }
+
+    //         std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path;
+    //         std::vector<std::pair<int, int>> path;
+    //         int optimal_length = INT_MAX;
+
+    // #pragma omp parallel
+    //         {
+    //             std::vector<std::vector<int>> g_value(g_score);
+    //             // std::vector<std::vector<int>> f_value(f_score);
+    //             int id = omp_get_thread_num();
+
+    //             const int DELTA_NODE_FLUSH_PERIOD = 10;
+
+    //             int delta_node_flush_count = 0;
+    //             int delta_node_num = 0;
+
+    //             while (open_node_num > 0)
+    //             {
+    //                 // std::cout << open_node_num << std::endl;
+    //                 delta_node_flush_count++;
+    //                 if (delta_node_flush_count > DELTA_NODE_FLUSH_PERIOD)
+    //                 {
+    //                     delta_node_flush_count = 0;
+    //                     open_node_num += delta_node_num;
+    //                     delta_node_num = 0;
+    //                 }
+
+    //                 omp_set_lock(&thread_array[id].lock);
+
+    //                 if (thread_array[id].open_list.size() > busy_threshold && num_threads > 1)
+    //                 {
+    //                     thread_array[id].wait_list.push({thread_array[id].open_list.top(), id});
+    //                     thread_array[id].open_list.pop();
+    //                 }
+
+    //                 int current_open_size = thread_array[id].open_list.size();
+    //                 omp_unset_lock(&thread_array[id].lock);
+
+    //                 if (current_open_size == 0)
+    //                 {
+    //                     int busiest_neighbor = -1;
+    //                     int longest_wl = 0;
+    //                     for (int i = 0; i < thread_array[id].neighbors.size(); i++)
+    //                     {
+
+    //                         auto neighbor = thread_array[id].neighbors[i];
+
+    //                         omp_set_lock(&neighbor->lock);
+
+    //                         if (neighbor->wait_list.size() > longest_wl)
+    //                         {
+    //                             busiest_neighbor = i;
+    //                             longest_wl = neighbor->wait_list.size();
+    //                         }
+
+    //                         omp_unset_lock(&neighbor->lock);
+    //                     }
+
+    //                     if (longest_wl > 0)
+    //                     {
+
+    //                         omp_set_lock(&thread_array[id].neighbors[busiest_neighbor]->lock);
+
+    //                         if (thread_array[id].neighbors[busiest_neighbor]->wait_list.size() > 0)
+    //                         {
+    //                             auto fetch_element = thread_array[id].neighbors[busiest_neighbor]->wait_list.front();
+
+    //                             thread_array[id].neighbors[busiest_neighbor]->wait_list.pop();
+
+    //                             thread_array[id].open_list.push(fetch_element.first);
+
+    //                             auto current = std::get<2>(fetch_element.first);
+
+    //                             int temp_g_value = std::get<0>(fetch_element.first) - std::get<1>(fetch_element.first);
+    //                             // int temp_f_value = temp_g_value + heuristic(current, end);
+
+    //                             if (temp_g_value < g_value[current.first][current.second])
+    //                             {
+    //                                 g_value[current.first][current.second] = temp_g_value;
+    //                                 // f_value[current.first][current.second] = std::get<0>(fetch_element.first);
+    //                                 // a_path[neighbor] = current;
+    //                                 thread_array[id].a_path = thread_array[fetch_element.second].a_path;
+    //                             }
+    //                             omp_unset_lock(&thread_array[id].neighbors[busiest_neighbor]->lock);
+    //                         }
+    //                         else
+    //                         {
+    //                             omp_unset_lock(&thread_array[id].neighbors[busiest_neighbor]->lock);
+    //                             continue;
+    //                         }
+    //                     }
+
+    //                     else
+    //                     {
+    //                         continue;
+    //                     }
+    //                 }
+
+    //                 // if (thread_array[id].open_list.size() == 0) {
+    //                 //     continue;
+    //                 // }
+
+    //                 omp_set_lock(&thread_array[id].lock);
+    //                 auto current_node = std::get<2>(thread_array[id].open_list.top());
+    //                 auto prev_node = thread_array[id].a_path[current_node];
+    //                 thread_array[id].open_list.pop();
+
+    //                 if (current_node == end)
+    //                 {
+    //                     if (g_value[current_node.first][current_node.second] < optimal_length)
+    //                     {
+    //                         optimal_length = g_value[current_node.first][current_node.second];
+    //                         std::cout << optimal_length << std::endl;
+    //                         std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path_local;
+    //                         std::vector<std::pair<int, int>> path_local = {end};
+    //                         auto cell = end;
+    //                         while (cell != start)
+    //                         {
+    //                             fwd_path_local[thread_array[id].a_path[cell]] = cell;
+    //                             path_local.insert(path_local.begin(), thread_array[id].a_path[cell]);
+    //                             cell = thread_array[id].a_path[cell];
+    //                         }
+    //                         std::swap(fwd_path, fwd_path_local);
+    //                         std::swap(path, path_local);
+    //                     }
+    //                 }
+
+    //                 omp_unset_lock(&thread_array[id].lock);
+
+    //                 delta_node_num -= 1;
+
+    //                 for (auto neighbor : maze.getNeighbors(current_node))
+    //                 {
+    //                     if (prev_node == neighbor)
+    //                     {
+    //                         continue;
+    //                     }
+    //                     int temp_g_value = g_value[current_node.first][current_node.second] + 1;
+    //                     int temp_f_value = temp_g_value + heuristic(neighbor, end);
+
+    //                     if (temp_g_value < g_value[neighbor.first][neighbor.second])
+    //                     {
+    //                         g_value[neighbor.first][neighbor.second] = temp_g_value;
+    //                         // f_value[neighbor.first][neighbor.second] = temp_f_value;
+    //                         thread_array[id].open_list.push({temp_f_value, heuristic(neighbor, end), neighbor});
+    //                         thread_array[id].a_path[neighbor] = current_node;
+    //                         delta_node_num += 1;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         return std::make_pair(path, fwd_path);
+    //     }
 private:
-    std::vector<std::tuple<int, int, std::pair<int, int>>>
-    start_expand(Maze &maze, std::pair<int, int> start, std::pair<int, int> end,
-                 std::vector<std::vector<int>> &g_score,
-                 std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> &a_path,
-                 int num_threads)
+    int hash_node(std::pair<int, int> &current, int num_threads)
     {
-        std::priority_queue<std::tuple<int, int, std::pair<int, int>>,
-                            std::vector<std::tuple<int, int, std::pair<int, int>>>,
-                            std::greater<std::tuple<int, int, std::pair<int, int>>>>
-            open;
-
-        open.push(std::make_tuple(heuristic(start, end), heuristic(start, end), start));
-        std::vector<std::tuple<int, int, std::pair<int, int>>> expand_list;
-
-        while (!open.empty())
-        {
-            auto current = std::get<2>(open.top());
-            open.pop();
-
-            if (current == end)
-            {
-                return std::vector<std::tuple<int, int, std::pair<int, int>>>();
-            }
-
-            auto neighbors = maze.getNeighbors(current);
-
-            for (const auto &neighbor : neighbors)
-            {
-                int temp_g_score = g_score[current.first][current.second] + 1;
-                int temp_f_score = temp_g_score + heuristic(neighbor, end);
-
-                if (temp_g_score < g_score[neighbor.first][neighbor.second])
-                {
-                    g_score[neighbor.first][neighbor.second] = temp_g_score;
-                    // f_score[neighbor.first][neighbor.second] = temp_f_score;
-                    open.push(std::make_tuple(temp_f_score, heuristic(neighbor, end), neighbor));
-                    a_path[neighbor] = current;
-                    if (open.size() == num_threads)
-                    {
-                        while (!open.empty())
-                        {
-                            expand_list.push_back(open.top());
-                            open.pop();
-                        }
-                        return expand_list;
-                    }
-                }
-            }
-        }
-        while (!open.empty())
-        {
-            expand_list.push_back(open.top());
-            open.pop();
-        }
-        return expand_list;
+        return (current.first + current.second) % num_threads;
     }
 
 public:
     std::pair<std::vector<std::pair<int, int>>, std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar>>
     solve_parallel(Maze &maze, std::pair<int, int> start, std::pair<int, int> end, int num_threads = omp_get_max_threads())
     {
-        std::vector<std::vector<int>> g_score(maze.getHeight(), std::vector<int>(maze.getWidth(), INT_MAX));
-        g_score[start.first][start.second] = 0;
-
-        // std::vector<std::vector<int>> f_score(maze.getHeight(), std::vector<int>(maze.getWidth(), INT_MAX));
-        // f_score[start.first][start.second] = heuristic(start, end);
-
-        std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> a_path;
-
-        std::atomic<int> open_node_num;
-        thread_state *thread_array;
-
-        auto node_list = start_expand(maze, start, end, g_score, a_path, num_threads);
-
-        const int busy_threshold = 100;
-
-        if (node_list.empty())
-        {
-            std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path;
-            auto cell = end;
-            std::vector<std::pair<int, int>> path = {end};
-
-            while (cell != start)
-            {
-                fwd_path[a_path[cell]] = cell;
-                path.insert(path.begin(), a_path[cell]);
-                cell = a_path[cell];
-            }
-
-            return std::make_pair(path, fwd_path);
-        }
-        else
-        {
-            thread_array = new thread_state[num_threads];
-            srand(time(NULL));
-            for (int i = 0; i < node_list.size(); ++i)
-            {
-                int thread_id = rand() % num_threads;
-                thread_array[thread_id].open_list.push(node_list[i]);
-                thread_array[thread_id].a_path = a_path;
-            }
-            open_node_num = node_list.size();
-
-            int bit_num = (int)log2(num_threads);
-            for (int i = 0; i < num_threads; ++i)
-            {
-                for (int j = 0; j < bit_num; ++j)
-                {
-                    int neighbor = i ^ (1 << j);
-                    thread_array[i].neighbors.push_back(&thread_array[neighbor]);
-                }
-            }
-            omp_set_num_threads(num_threads);
-        }
-
-        std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path;
-        std::vector<std::pair<int, int>> path;
-        int optimal_length = INT_MAX;
-
+        omp_set_num_threads(num_threads);
+        bool finished = false;
+        tbb::concurrent_queue<std::tuple<int, int, std::pair<int, int>>> queue[num_threads];
+        tbb::concurrent_unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> a_path;
+        std::atomic<int> remain_count;
+        remain_count = 1;
+        queue[hash_node(start, num_threads)].push(std::make_tuple(heuristic(start, end), heuristic(start, end), start));
+        int shortest = INT_MAX;
 #pragma omp parallel
         {
-            std::vector<std::vector<int>> g_value(g_score);
-            // std::vector<std::vector<int>> f_value(f_score);
             int id = omp_get_thread_num();
+            // int count = 0;
+            std::priority_queue<std::tuple<int, int, std::pair<int, int>>,
+                                std::vector<std::tuple<int, int, std::pair<int, int>>>,
+                                std::greater<std::tuple<int, int, std::pair<int, int>>>>
+                open_list;
+            std::unordered_map<std::pair<int, int>, int, HashPairAStar> g_value;
 
-            const int DELTA_NODE_FLUSH_PERIOD = 10;
-
-            int delta_node_flush_count = 0;
-            int delta_node_num = 0;
-
-            while (open_node_num > 0)
+            while (!finished)
             {
-                // std::cout << open_node_num << std::endl;
-                delta_node_flush_count++;
-                if (delta_node_flush_count > DELTA_NODE_FLUSH_PERIOD)
+                // Lặp kiểm tra xem trong concurrent_queue có phần tử nào không
+                // Có vẻ không có phương thức size() :v
+                while (1)
                 {
-                    delta_node_flush_count = 0;
-                    open_node_num += delta_node_num;
-                    delta_node_num = 0;
-                }
-
-                omp_set_lock(&thread_array[id].lock);
-
-                if (thread_array[id].open_list.size() > busy_threshold && num_threads > 1)
-                {
-                    thread_array[id].wait_list.push({thread_array[id].open_list.top(), id});
-                    thread_array[id].open_list.pop();
-                }
-
-                int current_open_size = thread_array[id].open_list.size();
-                omp_unset_lock(&thread_array[id].lock);
-
-                if (current_open_size == 0)
-                {
-                    int busiest_neighbor = -1;
-                    int longest_wl = 0;
-                    for (int i = 0; i < thread_array[id].neighbors.size(); i++)
+                    std::tuple<int, int, std::pair<int, int>> item;
+                    bool has_item = queue[id].try_pop(item);
+                    if (has_item)
                     {
-
-                        auto neighbor = thread_array[id].neighbors[i];
-
-                        omp_set_lock(&neighbor->lock);
-
-                        if (neighbor->wait_list.size() > longest_wl)
-                        {
-                            busiest_neighbor = i;
-                            longest_wl = neighbor->wait_list.size();
-                        }
-
-                        omp_unset_lock(&neighbor->lock);
+                        open_list.push(item);
                     }
-
-                    if (longest_wl > 0)
-                    {
-
-                        omp_set_lock(&thread_array[id].neighbors[busiest_neighbor]->lock);
-
-                        if (thread_array[id].neighbors[busiest_neighbor]->wait_list.size() > 0)
-                        {
-                            auto fetch_element = thread_array[id].neighbors[busiest_neighbor]->wait_list.front();
-
-                            thread_array[id].neighbors[busiest_neighbor]->wait_list.pop();
-
-                            thread_array[id].open_list.push(fetch_element.first);
-
-                            auto current = std::get<2>(fetch_element.first);
-
-                            int temp_g_value = std::get<0>(fetch_element.first) - std::get<1>(fetch_element.first);
-                            // int temp_f_value = temp_g_value + heuristic(current, end);
-
-                            if (temp_g_value < g_value[current.first][current.second])
-                            {
-                                g_value[current.first][current.second] = temp_g_value;
-                                // f_value[current.first][current.second] = std::get<0>(fetch_element.first);
-                                // a_path[neighbor] = current;
-                                thread_array[id].a_path = thread_array[fetch_element.second].a_path;
-                            }
-                            omp_unset_lock(&thread_array[id].neighbors[busiest_neighbor]->lock);
-                        }
-                        else
-                        {
-                            omp_unset_lock(&thread_array[id].neighbors[busiest_neighbor]->lock);
-                            continue;
-                        }
-                    }
-
                     else
                     {
-                        continue;
+                        break;
                     }
                 }
 
-                // if (thread_array[id].open_list.size() == 0) {
-                //     continue;
-                // }
-
-                omp_set_lock(&thread_array[id].lock);
-                auto current_node = std::get<2>(thread_array[id].open_list.top());
-                auto prev_node = thread_array[id].a_path[current_node];
-                thread_array[id].open_list.pop();
-
-                if (current_node == end)
+                if (open_list.size() == 0)
                 {
-                    if (g_value[current_node.first][current_node.second] < optimal_length)
+                    if (remain_count == 0)
                     {
-                        optimal_length = g_value[current_node.first][current_node.second];
-                        std::cout << optimal_length << std::endl;
-                        std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path_local;
-                        std::vector<std::pair<int, int>> path_local = {end};
-                        auto cell = end;
-                        while (cell != start)
-                        {
-                            fwd_path_local[thread_array[id].a_path[cell]] = cell;
-                            path_local.insert(path_local.begin(), thread_array[id].a_path[cell]);
-                            cell = thread_array[id].a_path[cell];
-                        }
-                        std::swap(fwd_path, fwd_path_local);
-                        std::swap(path, path_local);
+                        break;
                     }
+                    continue;
                 }
 
-                omp_unset_lock(&thread_array[id].lock);
+                std::tuple<int, int, std::pair<int, int>> item = open_list.top();
+                open_list.pop();
 
-                delta_node_num -= 1;
+                // count++;
 
-                for (auto neighbor : maze.getNeighbors(current_node))
+                std::pair<int, int> current = std::get<2>(item);
+                int current_g_value = std::get<0>(item) - std::get<1>(item);
+                if (g_value.count(current) > 0 && current_g_value >= g_value[current])
                 {
-                    if (prev_node == neighbor)
+                    remain_count.fetch_add(-1);
+                    continue;
+                }
+                else
+                {
+                    g_value[current] = current_g_value;
+                }
+
+                if (current == end)
+                {
+                    shortest = g_value[current];
+                    finished = true;
+                    break;
+                }
+
+                std::vector<std::tuple<int, int, std::pair<int, int>>> expand_buffer;
+                auto neighbors = maze.getNeighbors(current);
+                for (auto &neighbor : neighbors)
+                {
+                    if (a_path.count(current) > 0 && a_path[current] == neighbor)
                     {
                         continue;
                     }
-                    int temp_g_value = g_value[current_node.first][current_node.second] + 1;
-                    int temp_f_value = temp_g_value + heuristic(neighbor, end);
-
-                    if (temp_g_value < g_value[neighbor.first][neighbor.second])
+                    int update_g_value = current_g_value + 1;
+                    int new_f = update_g_value + heuristic(neighbor, end);
+                    expand_buffer.push_back(std::make_tuple(new_f, heuristic(neighbor, end), neighbor));
+                    if (a_path.count(neighbor) == 0)
                     {
-                        g_value[neighbor.first][neighbor.second] = temp_g_value;
-                        // f_value[neighbor.first][neighbor.second] = temp_f_value;
-                        thread_array[id].open_list.push({temp_f_value, heuristic(neighbor, end), neighbor});
-                        thread_array[id].a_path[neighbor] = current_node;
-                        delta_node_num += 1;
+                        a_path[neighbor] = current;
                     }
+                }
+                remain_count.fetch_add(expand_buffer.size() - 1);
+                for (auto item : expand_buffer)
+                {
+                    queue[hash_node(std::get<2>(item), num_threads)].push(item);
                 }
             }
         }
+        std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path;
+        auto cell = end;
+        std::vector<std::pair<int, int>> path = {end};
+
+        while (cell != start)
+        {
+            fwd_path[a_path[cell]] = cell;
+            path.insert(path.begin(), a_path[cell]);
+            cell = a_path[cell];
+        }
+
         return std::make_pair(path, fwd_path);
+        // std::cout << shortest << std::endl;
+        // for (const auto &point : a_path)
+        // {
+        //     std::cout << "[ (" << point.first.first << ", " << point.first.second << ") : (" << point.second.first << ", " << point.second.second << ") ]";
+        // }
     }
 };
-
 
 // int main()
 // {
