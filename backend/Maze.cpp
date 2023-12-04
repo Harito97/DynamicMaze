@@ -109,10 +109,6 @@ public:
         return std::make_pair(start, end);
     }
 
-    // bool exceptPoint(int i, int j) {
-    //     return 
-    // }
-
     void changeMaze(double prob_false_to_true, double prob_true_to_false)
     {
         // int is_dead_maze = 0;
@@ -175,7 +171,7 @@ public:
         {
             for (bool cell : row)
             {
-                std::cout << (cell ? "1 " : "0 ");
+                std::cout << (cell ? "1" : "0");
             }
             std::cout << std::endl;
         }
