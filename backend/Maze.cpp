@@ -32,7 +32,7 @@ private:
     }
 
 public:
-    Maze() {}   // default constructor - don't delete or Main.cpp will crash
+    Maze() {} // default constructor - don't delete or Main.cpp will crash
 
     Maze(std::pair<int, int> shape, double obstacle_prob = 0.1)
     {
@@ -49,6 +49,40 @@ public:
         }
         rows = maze.size();
         cols = maze.at(0).size();
+    }
+
+    Maze readMatrixFromFile(const std::string &filename)
+    {
+        std::vector<std::vector<bool>> matrix;
+        std::ifstream file(filename);
+
+        if (file.is_open())
+        {
+            std::string line;
+            while (getline(file, line))
+            {
+                std::vector<bool> row;
+                for (char c : line)
+                {
+                    if (c - '0' == 0)
+                    {
+                        row.push_back(false);
+                    }
+                    else
+                    {
+                        row.push_back(true);
+                    }
+                }
+                matrix.push_back(row);
+            }
+            file.close();
+        }
+        else
+        {
+            std::cerr << "Cannot open file" << std::endl;
+        }
+
+        return Maze(matrix);
     }
 
     Maze(std::vector<std::vector<bool>> maze)

@@ -9,6 +9,7 @@ const InputSection = () => {
     const [diffLevel, setDiffLevel] = useState(12);
     const [distance, setDistance] = useState(10);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [currentImage, setCurrentImage] = useState('/HanoiCity.png');
 
     const handleSliderNumberObjectChange = (numberObjectValue) => {
         setNumberOfObjects(numberObjectValue);
@@ -26,11 +27,68 @@ const InputSection = () => {
         setDistance(distanceValue);
     };
 
-    const handleChange = () => {
+    const handleCustomData = async () => {
         console.log('Number of objects:', numObject);
         console.log('Size of maze:', sizeMaze);
         console.log('Difficult level:', diffLevel);
         console.log('Distance start and end point', distance);
+        // Export Data to Backend
+        const dataToSend = {
+            numObject,
+            sizeMaze,
+            diffLevel,
+            distance,
+        };
+        
+        try {
+            const response = await fetch('http://your-backend-api/export-custom-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend),
+            });
+
+            if (response.ok) {
+                console.log('Custom data exported successfully');
+            } else {
+                console.error('Failed to export custom data');
+            }
+        } catch (error) {
+            console.error('Error during export:', error);
+        }
+    };
+
+    const handleExperimentData = async () => {
+        console.log('Loading experiment data to backend: RoadsResult.txt');
+        // Export Data to Backend
+        try {
+            const response = await fetch('http://your-backend-api/load-experiment-data', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log('Experiment data loaded successfully:', responseData);
+                // Perform any additional frontend logic based on the loaded data
+            } else {
+                console.error('Failed to load experiment data');
+            }
+        } catch (error) {
+            console.error('Error during experiment data loading:', error);
+        }
+    };
+
+    const handleDeepView = () => {
+        // Check the current image and toggle to the other image
+        if (currentImage === '/HanoiCity.png') {
+            setCurrentImage('/RoadsResult.png');
+        } else {
+            setCurrentImage('/HanoiCity.png');
+        }
     };
 
     const openModal = () => {
@@ -79,7 +137,7 @@ const InputSection = () => {
                     onChange={handleSliderDistanceChange}
                 />
             </div>
-            <button onClick={handleChange}>Call API</button>
+            <button onClick={handleCustomData}>Export</button>
 
             <hr style={{ border: '1px solid #ccc' }} />
 
@@ -106,7 +164,6 @@ const InputSection = () => {
                     style={{
                         content: {
                             display: 'flex',
-                            // justifyContent: 'justify', // Center vertically
                             flex: 3,
                             border: '1px solid #ccc',
                             margin: '2px',
@@ -116,8 +173,8 @@ const InputSection = () => {
                     }}
                 >
                     <img
-                        src="/HanoiCity.png"
-                        alt="Large Image"
+                        src={currentImage}
+                        alt="Large"
                         style={{
                             cursor: 'pointer',
                             width: '70%',
@@ -136,9 +193,9 @@ const InputSection = () => {
                                 margin: '10px',
                                 cursor: 'pointer',
                             }}
-                            onClick={() => console.log('Clicked on the image')}
+                            onClick={handleDeepView}
                         >
-                            Export
+                            Deep View
                         </button>
                         <button
                             style={{
@@ -160,16 +217,14 @@ const InputSection = () => {
                         margin: '5px',
                         cursor: 'pointer',
                     }}
-                    onClick={() => console.log('Clicked on the image')}
+                    onClick={handleExperimentData}
                 >
                     Export
                 </button>
 
             </div>
-
         </div>
     );
 }
 
 export default InputSection;
-

@@ -27,7 +27,7 @@ const ResultSection = () => {
             <textarea
                 value={consoleContent}
                 readOnly
-                rows={14}
+                rows={10}
                 style={{
                     resize: 'none',
                     width: '92%',
