@@ -1,50 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ResultSection = () => {
-    const [consoleContent, setConsoleContent] = useState('');
+    const [consoleContent, setConsoleContent] = useState('Welcome to terminal!\n');
 
     const appendToConsole = (message) => {
         setConsoleContent((prevContent) => prevContent + message + '\n');
     };
 
-    // Example: Append some content to the console on component mount
-    React.useEffect(() => {
-        appendToConsole('Welcome to terminal!');
+    useEffect(() => {
+        const getResult = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/get-text-result', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'no-cors',
+                    credentials: 'include',
+                });
+
+                if (!response.ok) {
+                    console.error('Failed to fetch result:', response.status);
+                    return;
+                }
+
+                const resultText = await response.text();                
+                console.log('Request successful');
+                appendToConsole(resultText);
+            } catch (error) {
+                console.error('Error during get result:', error);
+            }
+        };
+
+        // Gọi hàm để lấy kết quả khi component được mount
+        getResult();
     }, []); // Empty dependency array ensures it runs only once on mount
 
     return (
-        // <div className="result-section">
-        <div className="console-window"
-            style={{
-                content: {
-                    display: 'flex',
-                    border: '3px solid #ccc',
-                    margin: '2px',
-                    padding: '2px',
-                    borderRadius: 15
-                },
-            }}>
+        <div className="console-window">
             <textarea
                 value={consoleContent}
                 readOnly
                 rows={10}
                 style={{
                     resize: 'none',
-                    width: '92%',
                     fontFamily: 'monospace',
-                    // backgroundColor: '#272822',
-                    // color: '#F8F8F2',
                     border: 'none',
                     padding: '15px',
                     fontSize: '14px',
-                    // boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
                     outline: 'none',
                 }}
             />
         </div>
-        // </div>
     );
 };
 
 export default ResultSection;
-

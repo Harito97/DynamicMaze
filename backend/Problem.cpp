@@ -168,7 +168,6 @@ public:
                 problem.getChoice(object);
             }
             problem.getMaze().changeMaze(0.00001, 0.0);
-            // problem.getMaze().print();
         }
 
         std::cout << "RESULT: \n";

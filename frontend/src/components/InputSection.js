@@ -10,6 +10,7 @@ const InputSection = () => {
     const [distance, setDistance] = useState(10);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentImage, setCurrentImage] = useState('/HanoiCity.png');
+    const useExData = true;
 
     const handleSliderNumberObjectChange = (numberObjectValue) => {
         setNumberOfObjects(numberObjectValue);
@@ -39,20 +40,22 @@ const InputSection = () => {
             diffLevel,
             distance,
         };
-        
+
         try {
-            const response = await fetch('http://your-backend-api/export-custom-data', {
+            const response = await fetch('http://localhost:8080/load-custom-data', {
+                mode: 'no-cors',
+                credentials: 'include',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(dataToSend),
             });
-
-            if (response.ok) {
-                console.log('Custom data exported successfully');
+        
+            if (response.type === 'opaque') {
+                console.log('Request may not have CORS support');
             } else {
-                console.error('Failed to export custom data');
+                console.log('Request successful');
             }
         } catch (error) {
             console.error('Error during export:', error);
@@ -62,28 +65,32 @@ const InputSection = () => {
     const handleExperimentData = async () => {
         console.log('Loading experiment data to backend: RoadsResult.txt');
         // Export Data to Backend
+        const dataToSend = {
+            useExData
+        };
+
         try {
-            const response = await fetch('http://your-backend-api/load-experiment-data', {
-                method: 'GET',
+            const response = await fetch('http://localhost:8080/load-custom-data', {
+                mode: 'no-cors',
+                credentials: 'include',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify(dataToSend),
             });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log('Experiment data loaded successfully:', responseData);
-                // Perform any additional frontend logic based on the loaded data
+        
+            if (response.type === 'opaque') {
+                console.log('Request may not have CORS support');
             } else {
-                console.error('Failed to load experiment data');
+                console.log('Request successful');
             }
         } catch (error) {
-            console.error('Error during experiment data loading:', error);
+            console.error('Error during export:', error);
         }
     };
 
     const handleDeepView = () => {
-        // Check the current image and toggle to the other image
         if (currentImage === '/HanoiCity.png') {
             setCurrentImage('/RoadsResult.png');
         } else {
