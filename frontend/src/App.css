@@ -1,4 +1,52 @@
 .App {
+  display: flex;
+}
+
+* {
+  box-shadow: "0px 0px 10px rgba(0, 0, 0, 0.1)";
+}
+
+.image-frame {
+  border-radius: 10px;
+  width: 66%;
+  height: 94vh;
+  flex: 2;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+.side-panel {
+  border-radius: 10px;
+  height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-section {
+  border-radius: 10px;
+  height: 50vh;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+.console-window {
+  border-radius: 10px;
+  height: 50vh;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+input {
+  margin-bottom: 10px;
+  margin: 10px;
+  padding: 3px;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +83,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
