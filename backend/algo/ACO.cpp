@@ -22,7 +22,7 @@ private:
     double alpha;
 
 public:
-    ACO(int num_ants = 12, int iterations = 12, double pheromone_const = 1000.0, double evaporation_rate = 0.3, double alpha = 0.6)
+    ACO(int num_ants = 16, int iterations = 12, double pheromone_const = 1000.0, double evaporation_rate = 0.3, double alpha = 0.6)
         : num_ants(num_ants), iterations(iterations), pheromone_const(pheromone_const), evaporation_rate(evaporation_rate), alpha(alpha) {}
 
     std::pair<std::vector<std::pair<int, int>>, std::unordered_map<std::pair<std::pair<int, int>, std::pair<int, int>>, double, HashPairACO>>

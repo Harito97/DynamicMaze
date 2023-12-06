@@ -12,21 +12,33 @@ int main()
 {
         httplib::Server svr;
         std::string data;
-        std::string text_result = "Harito";
+        std::string text_result = "Harito hello Terminal!";
         bool currentWork = false;
-        std::string* encodedImage;
+        std::string *encodedImage;
 
         // Endpoint để xử lý yêu cầu GET
         svr.Get("/", [](const httplib::Request &, httplib::Response &res)
-                { res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
-            res.set_content("Hello from C++ server!", "text/plain"); });
+                { 
+                        // res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
+                        // res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                        // res.set_header("Access-Control-Allow-Headers", "Content-Type");
+                        // res.set_header("Access-Control-Allow-Credentials", "true");
+                        res.set_content("Hello from C++ server!", "text/plain"); });
 
         svr.Get("/get-txt-result", [&](const httplib::Request &, httplib::Response &res)
-                { res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
-            res.set_content(text_result, "text/plain"); });
+                { 
+                        // res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
+                        // res.set_header("Access-Control-Allow-Methods", "GET");
+                        // res.set_header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
+                        // res.set_header("Access-Control-Allow-Credentials", "true");
+                        res.set_content(text_result, "text/plain"); });
 
         svr.Get("/get-img-result", [&](const httplib::Request &, httplib::Response &res)
                 {
+                        res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
+                        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+                        res.set_header("Access-Control-Allow-Credentials", "true");
                         // // Tạo một ảnh mẫu (điều này có thể được thay thế bằng việc đọc từ tệp ảnh hoặc quá trình xử lý ảnh thực tế)
                         // cv::Mat img = cv::Mat::zeros(100, 100, CV_8UC3);
                         // cv::circle(img, cv::Point(50, 50), 30, cv::Scalar(255, 255, 255), -1);
@@ -43,14 +55,16 @@ int main()
         // Endpoint để nhận dữ liệu từ React
         svr.Post("/load-custom-data", [&](const httplib::Request &req, httplib::Response &res)
                  {
+                        //  res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
+                        //  res.set_header("Access-Control-Allow-Credentials", "true");
+                        //  res.set_header("Access-Control-Allow-Methods", "POST, GET, DELETE, HEAD, OPTIONS");
                          if (currentWork == true)
                          {
-                                 std::cout << "Another process is working!\n";
-                                 res.set_content("Another process is working!\n", "text/plain");
+                                 std::cout << "Load custom data failed as another process is working!\n";
+                                 res.set_content("Load custom data failed as another process is working!\n", "text/plain");
                                  return 0;
                          }
                          currentWork = true;
-                         res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
                          data = req.body;
                          std::cout << "Received data from React: " << data << std::endl;
                          res.set_content("Custom data received successfully", "text/plain");
@@ -64,15 +78,10 @@ int main()
                                  return 1; // Thêm lệnh return ở đây
                          }
 
-                         int numObject = jsonDoc["numObject"].GetInt();                         
-                         int sizeMaze = static_cast<int>(sqrt(jsonDoc["sizeMaze"].GetInt()));;
+                         int numObject = jsonDoc["numObject"].GetInt();
+                         int sizeMaze = static_cast<int>(sqrt(jsonDoc["sizeMaze"].GetInt()));
                          double diffLevel = jsonDoc["diffLevel"].GetInt() / 100.0;
                          int distance = jsonDoc["distance"].GetInt();
-
-                         std::cout << "numObject: " << numObject << std::endl;
-                         std::cout << "sizeMaze: " << sizeMaze << std::endl;
-                         std::cout << "diffLevel: " << diffLevel << std::endl;
-                         std::cout << "distance: " << distance << std::endl;
                          Problem problem(numObject, {sizeMaze, sizeMaze}, diffLevel, distance);
                          text_result = problem.solve();
 
@@ -82,13 +91,17 @@ int main()
 
         svr.Post("/load-experiment-data", [&](const httplib::Request &req, httplib::Response &res)
                  { 
+                        //  res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
+                        //  res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS"); 
+                        //  res.set_header("Access-Control-Allow-Headers", "Content-Type"); 
+                        //  res.set_header("Access-Control-Allow-Credentials", "true");
                          if (currentWork == true) 
                          {
-                                 std::cout << "There is another process are working!\n";
-                                 res.set_content("There is another process are working!\n", "text/plain");
+                                 std::cout << "Load experiment data failed as another process is working!\n";
+                                 res.set_content("Load experiment data failed as another process is working!\n", "text/plain");
                                  return 0;
                          }
-                         currentWork = true; 
+                         currentWork = true;
                          res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
                          // Lấy dữ liệu từ body của request
                          data = req.body;

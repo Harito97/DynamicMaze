@@ -49,7 +49,7 @@ private:
     void preDyMazeParallel(AStar &astar, ACO &aco)
     {
         // Use A* fine optimize path - return map
-        aStarPath = astar.solve_parallel(maze, startEnd.first, startEnd.second).second;
+        aStarPath = astar.solve_serial(maze, startEnd.first, startEnd.second).second;
         std::cout << "Got A*'s optimize path in parallel way" << std::endl;
         // Use ACO get pheromone map - return map
         acoMap = aco.solve_parallel(maze, startEnd.first, startEnd.second).second;
@@ -123,7 +123,8 @@ private:
                 if (it->second == neighbors.at(i))
                 {
                     // Code to handle the case where the comparison is true
-                    probities[i] *= ((double)rand() / RAND_MAX + 1);
+                    // probities[i] *= ((double)rand() / RAND_MAX + 1);
+                    probities[i] *= 5;
                     // std::cout << "Calculate probities with A* \n";
                 }
                 else
@@ -149,7 +150,7 @@ public:
         srand(time(NULL));
         std::string result = "RESULT: \n";
 
-        std::cout << getStatEnd().first.first << "-" << getStatEnd().first.second << " " << getStatEnd().second.first << "-" << getStatEnd().second.second << std::endl;
+        std::cout << "Start point: " << getStatEnd().first.first << "-" << getStatEnd().first.second << " End point: " << getStatEnd().second.first << "-" << getStatEnd().second.second << std::endl;
         // 1. Prepare work on static maze
         auto start1 = std::chrono::high_resolution_clock::now();
         AStar astar;
@@ -158,8 +159,8 @@ public:
         preDyMazeParallel(astar, aco);
         auto end1 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration1 = end1 - start1;
-        std::cout << "Time to prepare in static maze: " << std::to_string(duration1.count()) << " s\n";
-        result += "Time to prepare in static maze: " + std::to_string(duration1.count()) + " s\n";
+        std::cout << "Time to prepare in static maze: " << std::to_string(duration1.count()) << "s\n";
+        result += "Time to prepare in static maze: " + std::to_string(duration1.count()) + "s\n";
         // 2. Start main problem in dynamic maze
         // Condition to stop while loop:
         // +    All maze have no more path to go <-> every object that haven't reach target yet have the neighbors list = {}
@@ -172,12 +173,12 @@ public:
             {
                 getChoice(object);
             }
-            getMaze().changeMaze(0.00001, 0.0);
+            getMaze().changeMaze(0.0003, 0.0);
         }
         auto end2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration2 = end2 - start2;
-        std::cout << "Time work in dynamic maze: " << std::to_string(duration2.count()) << " s\n";
-        result += "Time work in dynamic maze: " + std::to_string(duration2.count()) + " s\n";
+        std::cout << "Time work in dynamic maze: " << std::to_string(duration2.count()) << "s\n";
+        result += "Time work in dynamic maze: " + std::to_string(duration2.count()) + "s\n";
 
         int numberGotTarget = 0;
         for (auto &object : getObjects())
@@ -189,7 +190,7 @@ public:
             // std::cout << object.first.currentPoint().first << "-" << object.first.currentPoint().second << " " << object.second << " <-> " << object.first.isTarget() << " " << object.first.length() << std::endl;
         }
         result += "Number get target point / total object from start: " + std::to_string(numberGotTarget) + " / " + std::to_string(getObjects().size()) + "\n";
-        std::cout << "The process finished with result: \n" << result;
+        std::cout << "The process finished.\n" << result;
         return result;
     };
 };

@@ -46,16 +46,13 @@ const InputSection = () => {
                 mode: 'no-cors',
                 credentials: 'include',
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(dataToSend),
             });
-        
+
             if (response.type === 'opaque') {
-                console.log('Request may not have CORS support');
+                console.log('Request load custom data may not have CORS support');
             } else {
-                console.log('Request successful');
+                console.log('Send request with custom data successful');
             }
         } catch (error) {
             console.error('Error during export:', error);
@@ -73,14 +70,11 @@ const InputSection = () => {
                 mode: 'no-cors',
                 credentials: 'include',
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(dataToSend),
             });
-        
+
             if (response.type === 'opaque') {
-                console.log('Request may not have CORS support');
+                console.log('Request load experiment data may not have CORS support');
             } else {
                 console.log('Request successful');
             }
@@ -106,6 +100,19 @@ const InputSection = () => {
         setModalIsOpen(false);
     };
 
+    const buttonStyle = {
+        backgroundColor: '#87CEEA', // Màu nền
+        color: '#FAFAFA',             // Màu chữ
+        padding: '10px 20px',        // Kích thước padding
+        borderRadius: '5px',        // Bo góc
+        border: 'none',             // Không có đường viền
+        cursor: 'pointer',          // Hiển thị biểu tượng con trỏ khi di chuột vào
+        fontSize: '16px',           // Kích thước chữ
+        // width: '100%',
+        marginRight: '10px', // Add space between buttons
+        margin: '10px',
+    };
+
     return (
         <div className="input-section">
             <div>
@@ -121,7 +128,7 @@ const InputSection = () => {
                 <label>Size of maze: {sizeMaze}</label>
                 <Slider
                     min={100}
-                    max={10000}
+                    max={15000}
                     value={sizeMaze}
                     onChange={handleSliderSizeMazeChange}
                 />
@@ -129,8 +136,8 @@ const InputSection = () => {
             <div>
                 <label>Difficult level: {diffLevel}</label>
                 <Slider
-                    min={1}
-                    max={40}
+                    min={10}
+                    max={25}
                     value={diffLevel}
                     onChange={handleSliderDiffLevelChange}
                 />
@@ -144,7 +151,19 @@ const InputSection = () => {
                     onChange={handleSliderDistanceChange}
                 />
             </div>
-            <button onClick={handleCustomData}>Export</button>
+            <button onClick={handleCustomData} style={{
+                backgroundColor: '#87CEEA', // Màu nền
+                color: '#FAFAFA',             // Màu chữ
+                padding: '10px',        // Kích thước padding
+                borderRadius: '5px',        // Bo góc
+                border: 'none',             // Không có đường viền
+                cursor: 'pointer',          // Hiển thị biểu tượng con trỏ khi di chuột vào
+                fontSize: '16px',           // Kích thước chữ
+                width: '95%',
+                marginRight: '10px', // Add space between buttons
+                margin: '10px',
+                alignItems: 'center',    
+            }}>Export Custom Parameter</button>
 
             <hr style={{ border: '1px solid #ccc' }} />
 
@@ -158,7 +177,7 @@ const InputSection = () => {
                         width: '70%',
                         height: 'auto',
                         flex: 2,
-                        border: '1px solid #ccc',
+                        border: '1px solid #87CEEA',
                         margin: '2px',
                         padding: '2px',
                         borderRadius: 10
@@ -193,39 +212,17 @@ const InputSection = () => {
                             borderRadius: 10
                         }}
                     />
-                    <div style={{ margin: '10px' }}>
-                        <button
-                            style={{
-                                padding: '10px',
-                                margin: '10px',
-                                cursor: 'pointer',
-                            }}
-                            onClick={handleDeepView}
-                        >
+                    <div style={{ margin: '10px', alignItems: 'center' }}>
+                        <button onClick={handleDeepView} style={buttonStyle}>
                             Deep View
                         </button>
-                        <button
-                            style={{
-                                marginRight: '10px', // Add space between buttons
-                                padding: '10px',
-                                margin: '10px',
-                                cursor: 'pointer',
-                            }}
-                            onClick={closeModal}
-                        >
+                        <button onClick={closeModal} style={buttonStyle}>
                             Close
                         </button>
                     </div>
                 </Modal>
 
-                <button
-                    style={{
-                        padding: '5px',
-                        margin: '5px',
-                        cursor: 'pointer',
-                    }}
-                    onClick={handleExperimentData}
-                >
+                <button onClick={handleExperimentData} style={buttonStyle}>
                     Export
                 </button>
 
