@@ -10,7 +10,7 @@ const ResultSection = () => {
     useEffect(() => {
         const getResult = async () => {
             try {
-                const response = await fetch('http://localhost:8080/get-text-result', {
+                const response = await fetch('http://localhost:8080/get-txt-result', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -18,11 +18,6 @@ const ResultSection = () => {
                     mode: 'no-cors',
                     credentials: 'include',
                 });
-
-                if (!response.ok) {
-                    console.error('Failed to fetch result:', response.status);
-                    return;
-                }
 
                 const resultText = await response.text();                
                 console.log('Request successful');

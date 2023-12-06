@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 class Maze
 {
@@ -34,7 +35,7 @@ private:
 public:
     Maze() {} // default constructor - don't delete or Main.cpp will crash
 
-    Maze(std::pair<int, int> shape, double obstacle_prob = 0.1)
+    Maze(std::pair<int, int> shape, double obstacle_prob = 0.12)
     {
         rows = shape.first;
         cols = shape.second;
@@ -117,27 +118,45 @@ public:
     // Hàm chọn ngẫu nhiên hai ô có giá trị false làm điểm bắt đầu và điểm kết thúc
     // Chọn điểm bắt đầu và kết thúc sau khi tạo maze mà không phải trước đó
     // vì để bám sát các vấn đề thực tiễn ứng dụng là map có trước
-    std::pair<std::pair<int, int>, std::pair<int, int>> selectStartAndEnd()
+    std::pair<std::pair<int, int>, std::pair<int, int>> selectStartAndEnd(int distance = 5)
     {
         int m = maze.size();
         int n = maze[0].size();
 
+        if (distance > (m + n) / 4) {
+            distance = 5;
+        }
+
         std::pair<int, int> start, end;
+        double real_distance = (start.first - end.first) * (start.first - end.first) + (start.second - end.second) * (start.second - end.second);
 
         // Lặp để chọn ngẫu nhiên hai ô false
-        while (true)
+        int flag = 0;
+        while (flag < 1000)
         {
             int x1 = std::rand() % m;
             int y1 = std::rand() % n;
             int x2 = std::rand() % m;
             int y2 = std::rand() % n;
+            real_distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 
-            if (!maze[x1][y1] && !maze[x2][y2] && (x1 != x2 || y1 != y2))
+            if (real_distance >= distance && !maze[x1][y1] && !maze[x2][y2] && (x1 != x2 || y1 != y2))
             {
                 start = std::make_pair(x1, y1);
                 end = std::make_pair(x2, y2);
                 break;
             }
+            ++flag;
+        }
+        if (flag == 1000)
+        {
+            // Just make sure always have correct respond
+            int x1 = std::rand() % m;
+            int y1 = std::rand() % n;
+            int x2 = std::rand() % m;
+            int y2 = std::rand() % n;
+            start = std::make_pair(x1, y1);
+            end = std::make_pair(x2, y2);
         }
 
         return std::make_pair(start, end);
@@ -145,7 +164,6 @@ public:
 
     void changeMaze(double prob_false_to_true, double prob_true_to_false)
     {
-        // int is_dead_maze = 0;
         for (int i = 0; i < rows; ++i)
         {
             for (int j = 0; j < cols; ++j)
@@ -157,19 +175,13 @@ public:
                     {
                         maze[i][j] = true;
                     }
-                    // else
-                    // {
-                    //     is_dead_maze += 1;
-                    // }
                 }
                 else if (maze[i][j] && random_value < prob_true_to_false)
                 {
                     maze[i][j] = false;
-                    // is_dead_maze += 1;
                 }
             }
         }
-        // return is_dead_maze == 0;
     }
 
     Maze copy()

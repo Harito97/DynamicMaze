@@ -63,14 +63,13 @@ const InputSection = () => {
     };
 
     const handleExperimentData = async () => {
-        console.log('Loading experiment data to backend: RoadsResult.txt');
         // Export Data to Backend
         const dataToSend = {
             useExData
         };
 
         try {
-            const response = await fetch('http://localhost:8080/load-custom-data', {
+            const response = await fetch('http://localhost:8080/load-experiment-data', {
                 mode: 'no-cors',
                 credentials: 'include',
                 method: 'POST',
@@ -88,6 +87,7 @@ const InputSection = () => {
         } catch (error) {
             console.error('Error during export:', error);
         }
+        console.log('Loaded experiment data to backend: RoadsResult.txt');
     };
 
     const handleDeepView = () => {

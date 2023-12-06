@@ -345,7 +345,7 @@ public:
                     if (g_value[current_node.first][current_node.second] < optimal_length)
                     {
                         optimal_length = g_value[current_node.first][current_node.second];
-                        std::cout << optimal_length << std::endl;
+                        std::cout << "The optimal length of A* path: " << optimal_length << std::endl;
                         std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path_local;
                         std::vector<std::pair<int, int>> path_local = {end};
                         auto cell = end;

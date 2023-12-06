@@ -4,6 +4,7 @@
 #include <utility>
 #include <cstdlib>   // create random value: srand(time(NULL)); int answer = std::rand() % 20; - create a random value from 0 to 20
 #include <algorithm> // find index of max element in vector
+#include <chrono>
 
 #include "Maze.cpp"
 #include "Object.cpp"
@@ -12,7 +13,7 @@
 
 class Problem
 {
-public:
+private:
     Maze maze;
     std::pair<std::pair<int, int>, std::pair<int, int>> startEnd;
     std::vector<std::pair<Object, bool>> objects;
@@ -21,10 +22,10 @@ public:
     std::pair<double, double> result; // <time from start to end; percent reached end point>
 
 public:
-    Problem(std::pair<int, int> shape, int numberObject)
+    Problem(int numberObject = 77, std::pair<int, int> shape = {15, 15}, double diffLevel = 0.12, int distance = 10)
     {
-        maze = Maze(shape);
-        startEnd = maze.selectStartAndEnd();
+        maze = Maze(shape, diffLevel);
+        startEnd = maze.selectStartAndEnd(distance);
         std::cout << "Create maze and start-end point successful" << std::endl;
         for (int i = 0; i < numberObject; ++i)
         {
@@ -34,6 +35,7 @@ public:
         std::cout << "Create objects successful" << std::endl;
     }
 
+private:
     void preDyMazeSerial(AStar &astar, ACO &aco)
     {
         // Use A* fine optimize path - return map
@@ -141,39 +143,44 @@ public:
         // std::cout << object.first.currentPoint().first << "-" << object.first.currentPoint().second << " " << object.second << " <-> " << object.first.isTarget() << " " << object.first.length() << std::endl;
     }
 
-    void solve()
+public:
+    std::string solve()
     {
         srand(time(NULL));
-        // 0. Create maze with custom size. Choose start and end point
-        std::pair<int, int> shape = {100, 100};
-        int numberObject = 100;
-        Problem problem(shape, numberObject);
-        std::cout << "The origin maze \n";
-        problem.getMaze().print();
-        std::cout << problem.getStatEnd().first.first << "-" << problem.getStatEnd().first.second << " " << problem.getStatEnd().second.first << "-" << problem.getStatEnd().second.second << std::endl;
+        std::string result = "RESULT: \n";
+
+        std::cout << getStatEnd().first.first << "-" << getStatEnd().first.second << " " << getStatEnd().second.first << "-" << getStatEnd().second.second << std::endl;
         // 1. Prepare work on static maze
+        auto start1 = std::chrono::high_resolution_clock::now();
         AStar astar;
         ACO aco;
-        // problem.preDyMazeSerial(astar, aco);
-        problem.preDyMazeParallel(astar, aco);
+        // preDyMazeSerial(astar, aco);
+        preDyMazeParallel(astar, aco);
+        auto end1 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration1 = end1 - start1;
+        std::cout << "Time to prepare in static maze: " << std::to_string(duration1.count()) << " s\n";
+        result += "Time to prepare in static maze: " + std::to_string(duration1.count()) + " s\n";
         // 2. Start main problem in dynamic maze
         // Condition to stop while loop:
         // +    All maze have no more path to go <-> every object that haven't reach target yet have the neighbors list = {}
         // +    All object reached the target <-> every object have getTarget property = true
-        while (!problem.stopCondition())
+        auto start2 = std::chrono::high_resolution_clock::now();
+        while (!stopCondition())
         {
             // Each object consider it's choice
-            for (auto &object : problem.getObjects())
+            for (auto &object : getObjects())
             {
-                problem.getChoice(object);
+                getChoice(object);
             }
-            problem.getMaze().changeMaze(0.00001, 0.0);
+            getMaze().changeMaze(0.00001, 0.0);
         }
+        auto end2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration2 = end2 - start2;
+        std::cout << "Time work in dynamic maze: " << std::to_string(duration2.count()) << " s\n";
+        result += "Time work in dynamic maze: " + std::to_string(duration2.count()) + " s\n";
 
-        std::cout << "RESULT: \n";
         int numberGotTarget = 0;
-        problem.getMaze().print();
-        for (auto &object : problem.getObjects())
+        for (auto &object : getObjects())
         {
             if (object.first.isTarget())
             {
@@ -181,7 +188,8 @@ public:
             }
             // std::cout << object.first.currentPoint().first << "-" << object.first.currentPoint().second << " " << object.second << " <-> " << object.first.isTarget() << " " << object.first.length() << std::endl;
         }
-        std::cout << "Number get target point: " << numberGotTarget << " / " << numberObject << std::endl;
-        return 0;
-    }
+        result += "Number get target point / total object from start: " + std::to_string(numberGotTarget) + " / " + std::to_string(getObjects().size()) + "\n";
+        std::cout << "The process finished with result: \n" << result;
+        return result;
+    };
 };
