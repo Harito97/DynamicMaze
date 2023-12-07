@@ -145,7 +145,7 @@ private:
     }
 
 public:
-    std::string solve()
+    std::string solve(std::string &encodedImage)
     {
         srand(time(NULL));
         std::string result = "RESULT: \n";
