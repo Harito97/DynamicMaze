@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo rm /etc/pacman.conf
+sudo cp ~/DynamicMaze/pacman.conf /etc
+
 # Kiểm tra và cài đặt git
 if ! command -v git &> /dev/null; then
     echo "git is not installed. Installing..."
