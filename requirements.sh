@@ -4,13 +4,13 @@ sudo rm /etc/pacman.conf
 sudo cp ~/DynamicMaze/pacman.conf /etc
 sudo pacman -Syu
 
-# Kiểm tra và cài đặt git
-if ! command -v git &> /dev/null; then
-    echo "git is not installed. Installing..."
-    sudo pacman -S git && echo "git installed successfully"
-else
-    echo "git is already installed."
-fi
+# # Kiểm tra và cài đặt git
+# if ! command -v git &> /dev/null; then
+#     echo "git is not installed. Installing..."
+#     sudo pacman -S git && echo "git installed successfully"
+# else
+#     echo "git is already installed."
+# fi
 
 # Kiểm tra và cài đặt yay
 if ! command -v yay &> /dev/null; then
@@ -29,7 +29,7 @@ fi
 # Kiểm tra và cài đặt npm
 # if ! command -v npm &> /dev/null; then
 #     echo "npm is not installed. Installing..."
-sudo pacman -S npm
+#     sudo pacman -S npm
 # else
 #     echo "npm is already installed."
 # fi
