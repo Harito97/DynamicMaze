@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# Kiểm tra và cài đặt git
+if ! command -v git &> /dev/null; then
+    echo "git is not installed. Installing..."
+    sudo pacman -S git && echo "git installed successfully"
+else
+    echo "git is already installed."
+fi
+
+# Kiểm tra và cài đặt yay
+if ! command -v yay &> /dev/null; then
+    echo "yay is not installed. Installing..."
+    cd ~/Clone
+    git clone https://aur.archlinux.org/yay.git
+    cd ~/Clone/yay
+    makepkg -si && echo "yay installed successfully"
+    cd
+else
+    echo "yay is already installed."
+fi
+
 # Kiểm tra và cài đặt npm
 if ! command -v npm &> /dev/null; then
     echo "npm is not installed. Installing..."
