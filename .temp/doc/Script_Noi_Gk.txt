@@ -1,0 +1,75 @@
+Bài toán tìm đường trong maze là bài toán rất sức cổ điển
+Ta được biết có rất nhiều phương pháp được phát triển.
+Vậy vấn đề đơn giản này, chúng tôi có thể nghiên cứu thêm gì nữa.
+
+Vấn đề chúng tôi đặt ra ở đây là:
+Sẽ thế nào nếu cấu trúc của mê cung liên tục thay đổi?
+Liệu các phương pháp giải cũ sẽ có còn hoạt động.
+Để tôi liệt kê các phương pháp cũ cho bài toán tìm đường đến đích trong maze 
+có thể kể đến như DFS, BFS, giải thuật ngập lụt, nguyên tác bám theo 1 hướng của bờ tường, ...
+Đặt câu hỏi thu hút sự chú ý cho mn. Vậy liệu những phương pháp cũ đó có còn hoạt động không?
+
+Được rồi, câu trả lời bạn sẽ nhận được ở những phần nói phía sau của chúng tôi.
+Câu hỏi tiếp theo của chúng tôi, bài toán này có thể dùng để làm cái gì?
+Lý do chúng tôi giới thiệu cái maze rất quen thuộc và đơn giản này vì cơ bản.
+mọi thứ phức tạp đều được phát triển từ những điều đơn giản
+
+<<Slide đám cháy>>
+
+Hóa ra rằng mọi vấn đề chúng ta gặp trong cuộc sống luôn luôn biến đổi, nó không giống như 1 mê cung tĩnh cổ điển.
+Điều mà nó giống hơn chính là 1 mê cung liên tục biến đổi.
+Lấy ví dụ như 1 mô phỏng cháy trong 1 tầng hầm để xe sau:
+Khi đám cháy xảy ra, các con đường có thể đi của nó sẽ mất dần đi. Mô phỏng nó chính là 1 mê cung đang sụp đổ về giá trị true
+- 1 giá trị chúng tôi định nghĩa là không thể đi được nữa. 
+Trong đám cháy này, có 1 điểm hay 1 nhóm các điểm (để cho vấn đề đơn giản thì chúng tôi dùng 1 điểm) tập trung người cần giải cứu. 
+Điểm start nằm ở 1 hoặc nhiều điểm trong or ngoài cấu trúc được chỉ định - để hiểu điều chúng tôi đang nói thì chúng tôi dùng 1 điểm start.
+Điểm start này liên tục gửi đến các nguồn lực (ví dụ như drone cứu hộ, hay nhân viên cứu hộ ví dụ vậy); các drone này cần đến đích nhanh nhất.
+
+Như vậy điều ta thấy được là cần đến đích nhanh nhất trước khi mê cung sụp đổ và mất hết đường đi - hay thậm chí chính điểm đích cũng bị sụp đổ và thành không thể đến được.
+Tiêu chí quan trọng nhất: Time 
+Điều quan trọng thứ 2 chính là giảm tối đa khả năng các nguồn lực được gửi đến bị chết đi - ví dụ bị trần nhà sụp đè chẳng hạn - phải để càng nhiều nguồn lực hỗ trợ đến đích.
+Như vậy tiêu chí thứ 2 của bài toán: Càng nhiều nguồn lực đến đích càng tốt.
+
+Mọi người có thể thấy cách mà chúng tôi định nghĩa về 1 đối tượng thực tế liên tục thay đổi trong cuộc sống.
+có tham số quan trọng chính là xác suất để 1 trạng thái thay đổi thành 1 trạng thái khác.
+Ví dụ với 1 maze mô tả đám cháy trên thì xác suất 1 ô có thể đi đc của nó chúng tôi đn là 0. Trong khi xs 1 ô thành không đi đc thì để ví dụ 0.3.
+Gía trị này càng tăng cao thì maze càng nhanh sụp đổ và càng khó để giải ra lời giải phù hợp yêu cầu đã có.
+Vậy giờ là lúc trí tưởng tượng mn bắt đầu đi. Nếu chúng ta thay đổi các tham số để mô tả về sự thay đổi của 1 đổi tượng. 
+Những vấn đề nào có thể phát sinh và ứng dụng hơn. 
+Lấy ví dụ về chiến sự tại dải Gaza,tên lửa của Isarel liên tục ném xuống làm thay đổi hoàn toàn cấu trúc của 1 thành phố. 
+Những người dân từ 1 hoặc nhiều điểm cần làm gì để đến bệnh viện hay trại trú ẩn gì đó nhanh nhất mà không bị bom ném trúng??
+Hay 1 đội quân từ 1 ví trí cần di chuyển từ 1 ví trí đến vị trí chiến lược hơn??
+Hiển nhiên sẽ không rồng rắn kéo nhau đi rồi. Cần chia nhỏ ra đi theo đơn vị nhỏ có thể kiểm soát được. 
+Rồi lần lượt đi để đến vị trí chiến lược mới mà không bị chết đúng chứ.
+
+Hay các vấn đề tương tự chính là điều phối robot di chuyển trong môi trường nhà máy liên tục thay đổi.
+Các robot liên tục di chuyển đến 1 điểm đích nhanh nhất (theo tiêu chí thời gian) mà hạn chế tối đa va chạm 
+- ví dụ 1 cái gì đột nhiên chặn đường đi.
+Hay bài toán điều phối giao thông.
+
+Như vậy mọi người cần ghi nhớ bài toán tổng quát hóa:
+Trong một môi trường liên tục thay đổi (chúng tôi sẽ mô tả nó dưới dạng 1 maze)
+Làm sao để đến đích trong thời gian ít nhất mà hạn chế tối đa sự hy sinh, mất đi của nguồn lực di chuyển trong môi trường đó.
+
+Đã xong phần đầu tiên: Giới thiệu bài toán.
+Câu hỏi giờ tôi đặt ra cho mọi người chính là làm sao để giải vấn đề chúng tôi vừa nêu ra?
+Có sẵn nhiều giải thuật ...
+Nhưng chúng đều giảm hiệu suất rất nhiều, có thể không bao giờ đến được đích.
+Lấy ví dụ về TH của giải thuật đi theo 1 hướng của bức tường - giải thuật dễ hiểu nhất dù không phải con đường tối ưu
+đảm bảo luôn tới được đích nếu tồn tại con đường đến đích.
+... bị chặn - lặp vô hạn - chết.
+
+? Vậy bạn ... còn kiên định với quan niệm giải được bằng cách cũ chứ?
+
+Hãy tìm hiểu xem các nhà khoa học khắp thế giới nghiên cứu sao về chủ đề này.
+Họ theo hướng dùng học máy, học tăng cường, AI để có cái nhìn chung về cấu trúc maze rồi tìm kiếm lời giải bài toán đặt ra trên maze đó.
+
+Tuy nhiên chúng tôi không đi theo hướng này bởi vì chi phí nguồn lực hạn chế. Để các phần cứng trên các nguồn lực này tối đa chi phí, chúng tôi đi theo hướng khác.
+
+Dùng các giải thuật truyền thống theo hướng dùng hàm heuristic. Cũng chính là hướng nghiên cứu thứ 2 bên cạnh việc sử dụng học máy, ...
+mà các nhà khoa học khác hướng tới. Đây là ví dụ về các giải thuật truyền thống. 
+
+Nói qua về đặc điểm của các phương pháp này. 
+Vậy theo quan điểm của các bạn chúng tôi nên sử dụng cách nào theo hướng giải quyết này.
+
+Để trả lời câu hỏi đó ta đến với phần thứ 3 của bài thuyết trình của chúng tôi. Hướng giải quyết:

@@ -180,7 +180,8 @@ const InputSection = () => {
                         border: '1px solid #87CEEA',
                         margin: '2px',
                         padding: '2px',
-                        borderRadius: 10
+                        borderRadius: 10,
+                        alignItems: 'center' 
                     }}
                 />
                 <Modal

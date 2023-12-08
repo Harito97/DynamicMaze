@@ -1,0 +1,73 @@
+III. Method
+
+1. Background
+
+The problem can be described as: Given several objects at the start point. With each move of an object, the maze will change at the same time, thus a dynamic maze. There’s a possibility of an object not able to reach to the goal point, so the method used should guarantee as many objects at the goal as possible at the minimum amount of time.
+
+	Another problem remains unsolved: supposed that every object moves at the same time, if a single object can’t reach the final destination, then other objects will get the same result, thus 2 possible outputs are either 100%, or 0%.
+
+As the project is about solving dynamic mazes, algorithms like DFS, BFS, Flood fill, A*, ACO, etc, have been viable solutions, with varied results, from decent performance, to rather undesirable. The problem of solving dynamic mazes is whether the adaptability of the algorithm to sudden changes, and the efficiency of the algorithm, can really affect the overall performance.
+
+Potential difficulties while solving this problem can be listed below:
+
+Changes of paths, including paths passed by objects.
+
+Potential memory overload.
+
+Possibility of path repetition.
+
+	The approach of running each object at a time won’t be efficient, since every move of an object means that the maze changes at the same time, causing memory overload as there’re multiple objects and it isnt’ guaranteed that a limited number of iterations can return the most optimal path.
+
+	Another problem arises, as possibilities
+
+DFS and BFS are reliant on backtracking, thus making it not ideal as changes of paths may affect the process, since the data from backtracking may not be appropriate, and paths change constantly, making the process last even longer than expected, with possibilities of indefinite backtracking, leading to memory overload. Flood fill is also not a desirable algorithm for similar reasons. A* and ACO algorithm are the potential candidates for solving dynamic mazes, but with the mentioned limitation of A* algorithm, ACO thrives as the most effective method with its adaptability to dynamic changes.
+
+Nếu áp dụng từng giải thuật trên cho từng đối tượng thì tại mỗi thời điểm, 1 đối tượng sẽ phải chạy giải thuật lại 1 lần để lựa chọn đường đi tiếp theo. Điều này sẽ khiến quá tải bộ nhớ vì ta phải chạy n lần giải thuật để tìm đường đi tiếp theo cho đối tượng. Một điều thêm nữa đó là nếu cấu trúc mê cung liên tục thay đổi trên đường đi, tức đường đi mà giải thuật trước đó đề nghị đi theo không còn ý nghĩa. Thuật toán sẽ phải chạy lại và trong lúc đối tượng chờ đợi kết quả của giải thuật thì cấu trúc mê cung vẫn sẽ lại thay đổi. Điều này dẫn đến 1 vòng lặp rằng con đường lựa chọn tiếp theo của đối tượng (vốn chỉ giúp đối tượng đến được đích trong mê cung trước khi có sự thay đổi) có thể không chính xác dẫn đến đích trong cấu trúc mê cung mới. Mấu chốt cho điểm yếu của hướng giải quyết này là các đối tượng sẽ mất rất nhiều thời gian tìm con đường mà nó xác định là tối ưu trên 1 cấu trúc maze tĩnh rồi đi theo nó - vốn có thể không đi được khi cấu trúc mê cung thay đổi. Kết quả của hướng giải quyết này là sau khi mê cung không còn đường đi nữa thì vẫn còn rất nhiều đối tượng mắc kẹt lại và không đến được đích. Tức kết quả là số lượng đối tượng đến đích quá thấp - 1 kết quả mà chúng tôi đang kỳ vọng là phải cao.
+
+2. Method explanation
+
+To summarize, the difficulties in many algorithms are that
+
+Tổng kết lại về các nhược điểm của các phương pháp trước đó là nếu áp dụng giải thuật chung cho toàn bộ các đối tượng thì chỉ có 2 kết quả thu được là 100% đối tượng đến đích hoặc 0% đối tượng đến đích. Tỷ lệ xảy ra trường hợp các đối tượng đến được đích hoàn toàn không được cao như mong đợi và đặc biệt trường hợp 0% đối tượng đến đích là kết quả mà chúng tôi không hề mong muốn - vốn sẽ có tỷ lệ cao xảy ra nếu giải thuật không được tối ưu hoặc đơn giản là sự thay đổi của mê cung diễn ra theo cách mà giải thuật hoạt động kém hiệu quả trong 1 số trường hợp đó.
+
+Cách giải quyết cho nhược điểm trên đó là thay vì để tất cả các đối tượng di chuyển cùng nhau trên một con đường thì các đối tượng sẽ tự tìm ra con đường đi cho riêng mình. Qua đó nếu có 1 đối tượng bị mắc kẹt thì không ảnh hưởng đến các đối tượng khác cũng đang di chuyển tron mê cung vì sự di chuyển của các đối tượng là độc lập với nhau.
+
+Tuy nhiên nếu dùng giải thuật cũ như BFS hay DFS, … cho từng đối tượng như đã phân tích ở trên thì tại mỗi thời điểm 1 đối tượng bất kỳ luôn phải chạy lại giải thuật để phù hợp với cấu trúc mê cung mới - điều mà nếu mê cung thay đổi quá nhanh thì các đối tượng sẽ nhanh chóng bị mắc kẹt do sự chậm chễ trong việc lựa chọn đường đi.
+
+Bởi vậy nên dù đi theo hướng tách các đối tượng di chuyển độc lập nhau chúng tôi cần đảm bảo thời gian mỗi đối tượng đưa ra 1 quyết định lựa chọn là nhanh chóng để áp đảo được tốc độ thay đổi của mê cung.
+
+Sau đây là phương pháp mà chúng tôi hướng tới để khắc phục nhược điểm nêu trên. 
+
+Chúng tôi xác định mỗi đối tượng cần độc lập đi những con đường riêng. Và tại mỗi thời điểm khi 1 đối tượng cần lựa chọn đường để đi thì chúng tôi sẽ xử dụng kết quả phối hợp của giải thuật A* và ACO để giúp 1 object bất kỳ nhanh chóng đưa ra 1 lựa chọn.
+Như vậy để giải bài toán dynamic maze này chúng tôi sẽ phân ra làm 2 bước chính. Bước đầu tiên là bước chuẩn bị. Ở bước chuẩn bị này chúng tôi sẽ thực hiện giải thuật A* để tìm ra đường đi tối ưu từ điểm đầu đến điểm điểm đích trong 1 trạng thái tĩnh được chọn của mê cung.
+Bên cạnh đó chúng tôi cũng sẽ sử dụng giải thuật ACO để đưa ra 1 bản đồ pheromone đánh giá tầm quan trọng trong việc đến đích của 1 lựa chọn.
+Như vậy kết quả của bước đàu tiên là sử dụng A* ta thu được 1 con đường, và sử dụng ACO để thu được 1 map pheromone về mọi con đường tồn tại trong maze.
+
+Sau khi xong bước chuẩn bị ở trên, chúng ta tiến vào cho các object bắt đầu chạy trong dynamic maze.
+Các object sẽ đưa ra lựa chọn ô sẽ đi theo 1 hàm mà chúng tôi đã định nghĩa dựa trên kết quả của bước chuẩn bị.
+Như vậy mỗi object sẽ đưa ra 1 lựa chọn độc lập nhau - hạn chế được nhược điểm đàu tiên chúng tôi đã nêu. 
+Đồng thời các object cũng nhanh chóng đưa ra quyết định ô tiếp theo sẽ đi dựa trên hàm chúng tôi đã thiết kế. Và như vậy khắc phục được nhược điểm thứ 2 của các phương pháp hiện nay là đưa ra 1 lựa chọn cho object quá chậm so với tốc độ thay đổi của maze.
+
+3. Phan tich thiet ke cua minh
+3.1. Diagram:
+Nem vao cai anh Diagram 
+
+Phan tich: ...
+
+3.2. Sequence:
+...
+
+3.3. Parallel:
+... 
+@DAnh lam parallel ACO o day nay
+@Duc lam parallel A* o day nay
+@Hai lam parallel giai thuat Dynamic Maze
+
+3.4. Database.
+
+
+
+
+
+
+
