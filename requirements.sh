@@ -11,6 +11,8 @@ fi
 # Kiểm tra và cài đặt yay
 if ! command -v yay &> /dev/null; then
     echo "yay is not installed. Installing..."
+    cd ~/
+    mkdir Clone
     cd ~/Clone
     git clone https://aur.archlinux.org/yay.git
     cd ~/Clone/yay
