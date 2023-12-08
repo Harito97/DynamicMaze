@@ -27,12 +27,12 @@ else
 fi
 
 # Kiểm tra và cài đặt npm
-if ! command -v npm &> /dev/null; then
-    echo "npm is not installed. Installing..."
-    sudo pacman -S npm
-else
-    echo "npm is already installed."
-fi
+# if ! command -v npm &> /dev/null; then
+#     echo "npm is not installed. Installing..."
+sudo pacman -S npm
+# else
+#     echo "npm is already installed."
+# fi
 
 # Kiểm tra và hiển thị phiên bản npm
 npm_version=$(npm --version)
@@ -69,6 +69,8 @@ if ! command -v httplib_version &> /dev/null; then
 else
     echo "cpp-httplib is already installed."
 fi
+
+sudo pacman -Syu
 
 # Thông báo hoàn tất
 echo "Package installation completed."
