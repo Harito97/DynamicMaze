@@ -7,7 +7,8 @@ sudo pacman -Syu
 # # Kiểm tra và cài đặt git
 # if ! command -v git &> /dev/null; then
 #     echo "git is not installed. Installing..."
-#     sudo pacman -S git && echo "git installed successfully"
+sudo pacman -S git 
+#     echo "git installed successfully"
 # else
 #     echo "git is already installed."
 # fi
@@ -26,10 +27,10 @@ else
     echo "yay is already installed."
 fi
 
-# Kiểm tra và cài đặt npm
+# # Kiểm tra và cài đặt npm
 # if ! command -v npm &> /dev/null; then
 #     echo "npm is not installed. Installing..."
-#     sudo pacman -S npm
+sudo pacman -S npm
 # else
 #     echo "npm is already installed."
 # fi
