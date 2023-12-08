@@ -178,7 +178,7 @@ private:
 
 public:
     std::pair<std::vector<std::pair<int, int>>, std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar>>
-    solve_parallel(Maze &maze, std::pair<int, int> start, std::pair<int, int> end, int num_threads = omp_get_max_threads())
+    solve_parallel(Maze &maze, std::pair<int, int> start, std::pair<int, int> end, int num_threads)
     {
         std::vector<std::vector<int>> g_score(maze.getHeight(), std::vector<int>(maze.getWidth(), INT_MAX));
         g_score[start.first][start.second] = 0;
@@ -231,12 +231,14 @@ public:
                     thread_array[i].neighbors.push_back(&thread_array[neighbor]);
                 }
             }
-            omp_set_num_threads(num_threads);
+            omp_set_num_threads(omp_get_max_threads());
         }
 
         std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path;
         std::vector<std::pair<int, int>> path;
         int optimal_length = INT_MAX;
+        omp_set_num_threads(num_threads);
+
 
 #pragma omp parallel
         {
@@ -345,7 +347,7 @@ public:
                     if (g_value[current_node.first][current_node.second] < optimal_length)
                     {
                         optimal_length = g_value[current_node.first][current_node.second];
-                        std::cout << "The optimal length of A* path: " << optimal_length << std::endl;
+                        // std::cout << "The optimal length of A* path: " << optimal_length << std::endl;
                         std::unordered_map<std::pair<int, int>, std::pair<int, int>, HashPairAStar> fwd_path_local;
                         std::vector<std::pair<int, int>> path_local = {end};
                         auto cell = end;

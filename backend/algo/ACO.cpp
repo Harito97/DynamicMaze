@@ -136,8 +136,9 @@ public:
     }
 
     std::pair<std::vector<std::pair<int, int>>, std::unordered_map<std::pair<std::pair<int, int>, std::pair<int, int>>, double, HashPairACO>>
-    solve_parallel(Maze &maze, std::pair<int, int> start, std::pair<int, int> end)
+    solve_parallel(Maze &maze, std::pair<int, int> start, std::pair<int, int> end, int num_threads)
     {
+        omp_set_num_threads(num_threads);
         std::vector<std::pair<int, int>> best_path;
         int best_path_length = INT_MAX;
         std::unordered_map<std::pair<std::pair<int, int>, std::pair<int, int>>, double, HashPairACO> pheromone_map;
