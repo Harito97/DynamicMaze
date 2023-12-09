@@ -103,7 +103,7 @@ const InputSection = () => {
     const buttonStyle = {
         backgroundColor: '#87CEEA', // Màu nền
         color: '#FAFAFA',             // Màu chữ
-        padding: '10px 20px',        // Kích thước padding
+        padding: '5px',        // Kích thước padding
         borderRadius: '5px',        // Bo góc
         border: 'none',             // Không có đường viền
         cursor: 'pointer',          // Hiển thị biểu tượng con trỏ khi di chuột vào
@@ -167,7 +167,7 @@ const InputSection = () => {
 
             <hr style={{ border: '1px solid #ccc' }} />
 
-            <div style={{ display: 'flex', height: '20vh' }} >
+            <div style={{ display: 'flex' }} > 
                 <img
                     src="/HanoiCity.png"
                     alt="Thumbnail"
@@ -175,7 +175,7 @@ const InputSection = () => {
                     style={{
                         cursor: 'pointer',
                         width: '70%',
-                        height: 'auto',
+                        height: '17vh',
                         flex: 2,
                         border: '1px solid #87CEEA',
                         margin: '2px',

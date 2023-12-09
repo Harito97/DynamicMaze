@@ -11,7 +11,7 @@ const ResultSection = () => {
         try {
             const response = await fetch('http://localhost:8080/get-txt-result', {
                 mode: 'cors',
-                // origin: 'http://localhost:3000',
+                // // origin: 'http://localhost:3000',
                 method: 'GET',
             });
 

@@ -1,9 +1,13 @@
+// __Author: Pham Ngoc Hai _ Harito__
 #pragma once
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+
+#include "opencv4/opencv2/opencv.hpp"
+#include "opencv4/opencv2/highgui/highgui.hpp"
 
 class Maze
 {
@@ -123,7 +127,8 @@ public:
         int m = maze.size();
         int n = maze[0].size();
 
-        if (distance > (m + n) / 4) {
+        if (distance > (m + n) / 4)
+        {
             distance = 5;
         }
 
@@ -162,7 +167,35 @@ public:
         return std::make_pair(start, end);
     }
 
-    void changeMaze(double prob_false_to_true, double prob_true_to_false)
+    // void changeMaze(double prob_false_to_true, double prob_true_to_false, cv::Mat &image)
+    // {
+    //     for (int i = 0; i < rows; ++i)
+    //     {
+    //         for (int j = 0; j < cols; ++j)
+    //         {
+    //             double random_value = (double)rand() / RAND_MAX;
+    //             if (!maze[i][j])
+    //             {
+    //                 if (random_value < prob_false_to_true)
+    //                 {
+    //                     maze[i][j] = true;
+    //                     image(i, j, change color this pixel to black)
+    //                 }
+    //             }
+    //             else if (maze[i][j])
+    //             {
+    //                 if (random_value < prob_true_to_false)
+    //                 {
+    //                     maze[i][j] = false;
+    //                 } else {
+    //                     image(i, j, change color this pixel to black)
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    void changeMaze(double prob_false_to_true, double prob_true_to_false, cv::Mat &image)
     {
         for (int i = 0; i < rows; ++i)
         {
@@ -174,11 +207,21 @@ public:
                     if (random_value < prob_false_to_true)
                     {
                         maze[i][j] = true;
+                        // Set the pixel color to black (0, 0, 0)
+                        image.at<cv::Vec3b>(i, j) = cv::Vec3b(255, 255, 255);
                     }
                 }
-                else if (maze[i][j] && random_value < prob_true_to_false)
+                else if (maze[i][j])
                 {
-                    maze[i][j] = false;
+                    if (random_value < prob_true_to_false)
+                    {
+                        maze[i][j] = false;
+                    }
+                    else
+                    {
+                        // Set the pixel color to black (0, 0, 0)
+                        image.at<cv::Vec3b>(i, j) = cv::Vec3b(255, 255, 255);
+                    }
                 }
             }
         }

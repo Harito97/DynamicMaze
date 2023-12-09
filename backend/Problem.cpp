@@ -5,7 +5,12 @@
 #include <cstdlib>   // create random value: srand(time(NULL)); int answer = std::rand() % 20; - create a random value from 0 to 20
 #include <algorithm> // find index of max element in vector
 #include <chrono>
+#include <httplib.h>
 
+#include "opencv4/opencv2/opencv.hpp"
+#include "opencv4/opencv2/highgui/highgui.hpp"
+#include "opencv4/opencv2/imgcodecs.hpp"
+// #include "opencv4/opencv2/core/utility/base64.hpp"
 #include "Maze.cpp"
 #include "Object.cpp"
 #include "algo/AStar.cpp"
@@ -84,12 +89,13 @@ private:
         return true;
     }
 
-    void getChoice(std::pair<Object, bool> &object)
+    void getChoice(std::pair<Object, bool> &object, cv::Mat &image)
     {
         std::vector<std::pair<int, int>> neighbors = maze.getNeighbors(object.first.currentPoint());
         if (neighbors.empty())
         {
-            object.second = true; // Object dead
+            object.second = true;                                                                                              // Object dead
+            image.at<cv::Vec3b>(object.first.currentPoint().first, object.first.currentPoint().second) = cv::Vec3b(0, 0, 255); // change to red
             return;
         }
         // std::cout << neighbors.size() << std::endl;
@@ -141,11 +147,12 @@ private:
         }
         auto maxProbityIndex = std::max_element(probities.begin(), probities.end()) - probities.begin();
         object.first.move(neighbors[maxProbityIndex]);
+        image.at<cv::Vec3b>(neighbors[maxProbityIndex].first, neighbors[maxProbityIndex].second) = cv::Vec3b(0, 255, 0); // change to green color
         // std::cout << object.first.currentPoint().first << "-" << object.first.currentPoint().second << " " << object.second << " <-> " << object.first.isTarget() << " " << object.first.length() << std::endl;
     }
 
 public:
-    std::string solve(std::string &encodedImage)
+    std::string solve(std::string* encodedImage)
     {
         srand(time(NULL));
         std::string result = "RESULT: \n";
@@ -168,12 +175,30 @@ public:
         auto start2 = std::chrono::high_resolution_clock::now();
         while (!stopCondition())
         {
+            cv::Mat image(getMaze().getHeight(), getMaze().getWidth(), CV_8UC3, cv::Scalar(0, 0, 0));
+            getMaze().changeMaze(0.0003, 0.0, image);
             // Each object consider it's choice
             for (auto &object : getObjects())
             {
-                getChoice(object);
+                getChoice(object, image);
             }
-            getMaze().changeMaze(0.0003, 0.0);
+
+            // // Convert cv::Mat to base64
+            // std::vector<uchar> buffer;
+            // cv::imencode(".png", image, buffer);
+
+            // // Encode to base64
+            // std::string base64Image = cv::Base64Encode(buffer.data(), buffer.size());
+
+            // // Assign the encoded image to the output parameter
+            // encodedImage = base64Image;
+
+            std::vector<uchar> buf;
+            cv::imencode(".jpg", image, buf);
+            auto *enc_msg = reinterpret_cast<unsigned char *>(buf.data());
+            *encodedImage = httplib::detail::base64_encode(std::string(reinterpret_cast<const char*>(enc_msg), buf.size()));
+            // encodedImage = httplib::detail::base64_encode(std::string(enc_msg));
+            // ma hoa cv::Mat image thanh string base64 de co the truyen tu backend C++ toi frontend JS
         }
         auto end2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration2 = end2 - start2;
@@ -190,7 +215,8 @@ public:
             // std::cout << object.first.currentPoint().first << "-" << object.first.currentPoint().second << " " << object.second << " <-> " << object.first.isTarget() << " " << object.first.length() << std::endl;
         }
         result += "Number get target point / total object from start: " + std::to_string(numberGotTarget) + " / " + std::to_string(getObjects().size()) + "\n";
-        std::cout << "The process finished.\n" << result;
+        std::cout << "The process finished.\n"
+                  << result;
         return result;
     };
 };
