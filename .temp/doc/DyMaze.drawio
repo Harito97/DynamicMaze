@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-12-07T16:06:04.054Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="NQHJbgYAfUszweelEw7L" version="22.1.2" type="device" pages="2">
+<mxfile host="Electron" modified="2023-12-09T15:20:12.359Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="CNAr2lpT1aLQAVsnMRkb" version="22.1.2" type="device" pages="3">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1749" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="10000" pageHeight="10000" math="0" shadow="0">
+    <mxGraphModel dx="2200" dy="1102" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="10000" pageHeight="10000" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -126,156 +126,164 @@
         <mxCell id="-seAESRT9o7vdsMmAVrN-39" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="-seAESRT9o7vdsMmAVrN-36" target="-seAESRT9o7vdsMmAVrN-36" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-0" value="Backend C++" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1300" y="1640" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FNHadDuun3siNhaxWfiM-1" target="FNHadDuun3siNhaxWfiM-0">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FNHadDuun3siNhaxWfiM-1" target="FNHadDuun3siNhaxWfiM-9">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-1" value="Frontend JS" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1850" y="1640" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-2" value="Data Backend in RAM" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1300" y="2000" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FNHadDuun3siNhaxWfiM-0" target="FNHadDuun3siNhaxWfiM-2">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1550" y="1870" as="sourcePoint" />
-            <mxPoint x="1600" y="1820" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-5" value="User send the&amp;nbsp; Request with custom parameter or default parameter" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1460" y="1620" width="380" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-6" value="Run program with parameter from user and create result" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1370" y="1840" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FNHadDuun3siNhaxWfiM-0" target="FNHadDuun3siNhaxWfiM-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-8" value="Backend take result of C++ program and send to frontend" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1440" y="1710" width="380" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FNHadDuun3siNhaxWfiM-9" target="FNHadDuun3siNhaxWfiM-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-9" value="Monitor of user" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1850" y="2000" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-13" value="User setup parameter of dynamic maze problem and frontend get these value" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1960" y="1850" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="FNHadDuun3siNhaxWfiM-14" value="Data get from backend show in terminal: include frame of pictures show how maze change and how objects move in maze." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1800" y="1850" width="60" height="30" as="geometry" />
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="V1W5mYoB-wuJSaZrHriK" name="Page-2">
-    <mxGraphModel dx="899" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1350" dy="1102" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--2" target="IhoJKRk8DRcU_VlJsmk--5">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--2" target="IhoJKRk8DRcU_VlJsmk--5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1260" y="930" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--2" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;Have:&lt;br style=&quot;font-size: 15px;&quot;&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;1. A dynamic maze&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;2. &lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;A (or many) start point&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;3. A (or many) end point&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;4.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;Many objects move&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;&lt;br style=&quot;font-size: 15px;&quot;&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;Conditions:&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;1. Number objects reach end point is MAX&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;2. Make most objects reach end point in MIN time&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;shadow=0;sketch=1;curveFitting=1;jiggle=2;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--2" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;Have:&lt;br style=&quot;font-size: 15px;&quot;&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;1. A dynamic maze&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;2. &lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;A (or many) start point&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;3. A (or many) end point&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: initial; white-space: pre; font-size: 15px;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;4.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;Many objects move&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;&lt;br style=&quot;font-size: 15px;&quot;&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;Conditions:&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;1. Number objects reach end point is MAX&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 15px;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; style=&quot;font-size: 15px;&quot;&gt;2. Make most objects reach end point in MIN time&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;shadow=0;sketch=1;curveFitting=1;jiggle=2;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1020" y="450" width="480" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--5" target="IhoJKRk8DRcU_VlJsmk--8">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--5" target="IhoJKRk8DRcU_VlJsmk--8" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--4" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--5" target="IhoJKRk8DRcU_VlJsmk--9">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--4" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--5" target="IhoJKRk8DRcU_VlJsmk--9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--5" value="Use A* and ACO on Static Maze&amp;nbsp;&lt;br style=&quot;font-size: 15px;&quot;&gt;1. Optimize Path from A*&lt;br style=&quot;font-size: 15px;&quot;&gt;2. Pheromone Map about Maze from ACO" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--5" value="Use A* and ACO on Static Maze&amp;nbsp;&lt;br style=&quot;font-size: 15px;&quot;&gt;1. Optimize Path from A*&lt;br style=&quot;font-size: 15px;&quot;&gt;2. Pheromone Map about Maze from ACO" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="1100" y="690" width="320" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--6" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--8" target="IhoJKRk8DRcU_VlJsmk--15">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--6" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--8" target="IhoJKRk8DRcU_VlJsmk--15" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--7" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--8" target="IhoJKRk8DRcU_VlJsmk--12">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--7" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--8" target="IhoJKRk8DRcU_VlJsmk--12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--8" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Make objects &quot;move like ants&quot; with pheromone map and optimize path in static maze =&amp;gt; incresing probility can have good choose&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;fillColor=#66CC00;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--8" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Make objects &quot;move like ants&quot; with pheromone map and optimize path in static maze =&amp;gt; incresing probility can have good choose&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;fillColor=#66CC00;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="1100" y="850" width="320" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--9" value="Use A* search the optimize path" style="ellipse;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;labelBackgroundColor=none;labelBorderColor=none;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--9" value="Use A* search the optimize path" style="ellipse;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;labelBackgroundColor=none;labelBorderColor=none;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
           <mxGeometry x="1490" y="650" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--10" value="Use ACO get the pheromone map" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--10" value="Use ACO get the pheromone map" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;fontStyle=1;" parent="1" vertex="1">
           <mxGeometry x="1490" y="765" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--11" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--12" target="IhoJKRk8DRcU_VlJsmk--16">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--11" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--12" target="IhoJKRk8DRcU_VlJsmk--16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--12" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Update maze&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--12" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Update maze&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1;" parent="1" vertex="1">
           <mxGeometry x="1060" y="1010" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--13" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--15" target="IhoJKRk8DRcU_VlJsmk--17">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--13" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--15" target="IhoJKRk8DRcU_VlJsmk--17" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--14" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--15" target="IhoJKRk8DRcU_VlJsmk--16">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--14" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--15" target="IhoJKRk8DRcU_VlJsmk--16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--15" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Move objects&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--15" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Move objects&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1300" y="1010" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--16" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;At the same time&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--16" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;At the same time&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1180" y="1130" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--17" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Probility choose incresing:&lt;br&gt;1. Have pheromone high&lt;br&gt;2. Is a part of the optimize A* path&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--17" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Probility choose incresing:&lt;br&gt;1. Have pheromone high&lt;br&gt;2. Is a part of the optimize A* path&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1540" y="990" width="360" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--18" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.008;entryY=0.617;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--5" target="IhoJKRk8DRcU_VlJsmk--10">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--18" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.008;entryY=0.617;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;fontStyle=1" parent="1" source="IhoJKRk8DRcU_VlJsmk--5" target="IhoJKRk8DRcU_VlJsmk--10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--19" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--20" target="IhoJKRk8DRcU_VlJsmk--24">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--19" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" parent="1" source="IhoJKRk8DRcU_VlJsmk--20" target="IhoJKRk8DRcU_VlJsmk--24" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--20" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Result:&lt;br&gt;+ Percent get end point&lt;br&gt;+ Time&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1;fillColor=#00CCCC;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--20" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Result:&lt;br&gt;+ Percent get end point&lt;br&gt;+ Time&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1;fillColor=#00CCCC;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="2155" y="1130" width="190" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--21" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--24" target="IhoJKRk8DRcU_VlJsmk--2">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--21" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" parent="1" source="IhoJKRk8DRcU_VlJsmk--24" target="IhoJKRk8DRcU_VlJsmk--2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--22" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--24" target="IhoJKRk8DRcU_VlJsmk--26">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--22" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" parent="1" source="IhoJKRk8DRcU_VlJsmk--24" target="IhoJKRk8DRcU_VlJsmk--26" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--23" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--24" target="IhoJKRk8DRcU_VlJsmk--27">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--23" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;" parent="1" source="IhoJKRk8DRcU_VlJsmk--24" target="IhoJKRk8DRcU_VlJsmk--27" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--24" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;GUII:&lt;br&gt;REACTJS&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1;fillColor=#FF9933;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--24" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;GUII:&lt;br&gt;REACTJS&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1;fillColor=#FF9933;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="2070" y="510" width="360" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--25" value="Present result" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--25" value="Present result" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" parent="1" vertex="1">
           <mxGeometry x="1620" y="510" width="250" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--26" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Present Dynamic Maze &amp;amp; The Move of Objects in DyMaze &amp;amp; Conclusion about Result&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--26" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Present Dynamic Maze &amp;amp; The Move of Objects in DyMaze &amp;amp; Conclusion about Result&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1750" y="680" width="320" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--27" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Setup para of problem:&lt;br&gt;Size of maze, Number of object,&lt;br&gt;Start - End Point, How Maze Be Change,&lt;br&gt;***Export HanoiMap =&amp;gt; Maze =&amp;gt; Problem&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--27" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Setup para of problem:&lt;br&gt;Size of maze, Number of object,&lt;br&gt;Start - End Point, How Maze Be Change,&lt;br&gt;***Export HanoiMap =&amp;gt; Maze =&amp;gt; Problem&lt;br&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="1810" y="850" width="410" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--28" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IhoJKRk8DRcU_VlJsmk--16" target="IhoJKRk8DRcU_VlJsmk--20">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--28" value="" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;startSize=8;endSize=8;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="IhoJKRk8DRcU_VlJsmk--16" target="IhoJKRk8DRcU_VlJsmk--20" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1340" y="1170" as="sourcePoint" />
             <mxPoint x="2060" y="1170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--29" value="Export Result - Test Time/Space of each prgram, and function activity" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--29" value="Export Result - Test Time/Space of each prgram, and function activity" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" parent="1" vertex="1">
           <mxGeometry x="1480" y="1180" width="480" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--30" value="Static Maze" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--30" value="Static Maze" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" parent="1" vertex="1">
           <mxGeometry x="1460" y="735" width="140" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="IhoJKRk8DRcU_VlJsmk--31" value="Dynamic Maze" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" vertex="1" parent="1">
+        <mxCell id="IhoJKRk8DRcU_VlJsmk--31" value="Dynamic Maze" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Architects Daughter;" parent="1" vertex="1">
           <mxGeometry x="1430" y="960" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="DzqjYCfI343aDKMhTy29" name="Page-3">
+    <mxGraphModel dx="250" dy="-549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-1" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; face=&quot;Architects Daughter&quot;&gt;Backend C++&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="1640" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1" source="ceS1WuGKwIPgUaKBhP1Q-4" target="ceS1WuGKwIPgUaKBhP1Q-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1" source="ceS1WuGKwIPgUaKBhP1Q-4" target="ceS1WuGKwIPgUaKBhP1Q-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-4" value="Frontend JS" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1850" y="1640" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-5" value="Data Backend in RAM" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="2000" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1" source="ceS1WuGKwIPgUaKBhP1Q-1" target="ceS1WuGKwIPgUaKBhP1Q-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1550" y="1870" as="sourcePoint" />
+            <mxPoint x="1600" y="1820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-7" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; face=&quot;Architects Daughter&quot;&gt;User send the&amp;nbsp; Request with custom parameter or default parameter&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="1620" width="430" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-8" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; face=&quot;Architects Daughter&quot;&gt;Run program with parameter from user and create result&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="1840" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1" source="ceS1WuGKwIPgUaKBhP1Q-1" target="ceS1WuGKwIPgUaKBhP1Q-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-10" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; face=&quot;Architects Daughter&quot;&gt;Backend take result of C++ program and send to frontend&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="1710" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1" source="ceS1WuGKwIPgUaKBhP1Q-12" target="ceS1WuGKwIPgUaKBhP1Q-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-12" value="Monitor of user" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1850" y="2000" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-13" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; face=&quot;Architects Daughter&quot;&gt;User setup parameter of dynamic maze problem and frontend get these value&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1960" y="1850" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ceS1WuGKwIPgUaKBhP1Q-14" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Architects+Daughter&quot; face=&quot;Architects Daughter&quot;&gt;Data get from backend show in terminal: include frame of pictures show how maze change and how objects move in maze.&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="1850" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

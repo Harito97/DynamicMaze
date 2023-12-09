@@ -167,34 +167,6 @@ public:
         return std::make_pair(start, end);
     }
 
-    // void changeMaze(double prob_false_to_true, double prob_true_to_false, cv::Mat &image)
-    // {
-    //     for (int i = 0; i < rows; ++i)
-    //     {
-    //         for (int j = 0; j < cols; ++j)
-    //         {
-    //             double random_value = (double)rand() / RAND_MAX;
-    //             if (!maze[i][j])
-    //             {
-    //                 if (random_value < prob_false_to_true)
-    //                 {
-    //                     maze[i][j] = true;
-    //                     image(i, j, change color this pixel to black)
-    //                 }
-    //             }
-    //             else if (maze[i][j])
-    //             {
-    //                 if (random_value < prob_true_to_false)
-    //                 {
-    //                     maze[i][j] = false;
-    //                 } else {
-    //                     image(i, j, change color this pixel to black)
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
     void changeMaze(double prob_false_to_true, double prob_true_to_false, cv::Mat &image)
     {
         for (int i = 0; i < rows; ++i)
@@ -208,7 +180,8 @@ public:
                     {
                         maze[i][j] = true;
                         // Set the pixel color to black (0, 0, 0)
-                        image.at<cv::Vec3b>(i, j) = cv::Vec3b(255, 255, 255);
+                        // image.at<cv::Vec3b>(i, j) = cv::Vec3b(255, 255, 255);
+                        cv::circle(image, cv::Point(std::max(0, 3 * i - 1), std::max(0, 3 * j - 1)), 1, cv::Scalar(255, 255, 255), -1);
                     }
                 }
                 else if (maze[i][j])
@@ -220,7 +193,8 @@ public:
                     else
                     {
                         // Set the pixel color to black (0, 0, 0)
-                        image.at<cv::Vec3b>(i, j) = cv::Vec3b(255, 255, 255);
+                        // image.at<cv::Vec3b>(i, j) = cv::Vec3b(255, 255, 255);
+                        cv::circle(image, cv::Point(std::max(0, 3 * i - 1), std::max(0, 3 * j - 1)), 1, cv::Scalar(255, 255, 255), -1);
                     }
                 }
             }

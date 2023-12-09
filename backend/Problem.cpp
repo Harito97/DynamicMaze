@@ -27,10 +27,22 @@ private:
     std::pair<double, double> result; // <time from start to end; percent reached end point>
 
 public:
-    Problem(int numberObject = 77, std::pair<int, int> shape = {15, 15}, double diffLevel = 0.12, int distance = 10)
+    Problem(int numberObject, std::pair<int, int> shape, double diffLevel = 0.12, int distance = 10)
     {
         maze = Maze(shape, diffLevel);
         startEnd = maze.selectStartAndEnd(distance);
+        std::cout << "Create maze and start-end point successful" << std::endl;
+        for (int i = 0; i < numberObject; ++i)
+        {
+            Object object(startEnd.first);
+            objects.push_back(std::make_pair(object, false)); // object hadn't dead yet
+        }
+        std::cout << "Create objects successful" << std::endl;
+    }
+
+    Problem(int numberObject = 100) {
+        maze = Maze().readMatrixFromFile("RoadsResult.txt");
+        startEnd = maze.selectStartAndEnd(10);
         std::cout << "Create maze and start-end point successful" << std::endl;
         for (int i = 0; i < numberObject; ++i)
         {
@@ -95,7 +107,8 @@ private:
         if (neighbors.empty())
         {
             object.second = true;                                                                                              // Object dead
-            image.at<cv::Vec3b>(object.first.currentPoint().first, object.first.currentPoint().second) = cv::Vec3b(0, 0, 255); // change to red
+            // image.at<cv::Vec3b>(object.first.currentPoint().first, object.first.currentPoint().second) = cv::Vec3b(0, 0, 255); // change to red
+            cv::circle(image, cv::Point(std::max(0, 3 * object.first.currentPoint().first - 1), std::max(0, 3 * object.first.currentPoint().second - 1)), 1, cv::Scalar(0, 0, 255), -1);
             return;
         }
         // std::cout << neighbors.size() << std::endl;
@@ -147,7 +160,8 @@ private:
         }
         auto maxProbityIndex = std::max_element(probities.begin(), probities.end()) - probities.begin();
         object.first.move(neighbors[maxProbityIndex]);
-        image.at<cv::Vec3b>(neighbors[maxProbityIndex].first, neighbors[maxProbityIndex].second) = cv::Vec3b(0, 255, 0); // change to green color
+        // image.at<cv::Vec3b>(neighbors[maxProbityIndex].first, neighbors[maxProbityIndex].second) = cv::Vec3b(0, 255, 0); // change to green color
+        cv::circle(image, cv::Point(std::max(0, 3 * neighbors[maxProbityIndex].first - 1), std::max(0, 3 * neighbors[maxProbityIndex].second - 1)), 1, cv::Scalar(0, 255, 0), -1);
         // std::cout << object.first.currentPoint().first << "-" << object.first.currentPoint().second << " " << object.second << " <-> " << object.first.isTarget() << " " << object.first.length() << std::endl;
     }
 
@@ -175,8 +189,9 @@ public:
         auto start2 = std::chrono::high_resolution_clock::now();
         while (!stopCondition())
         {
-            cv::Mat image(getMaze().getHeight(), getMaze().getWidth(), CV_8UC3, cv::Scalar(0, 0, 0));
-            getMaze().changeMaze(0.0003, 0.0, image);
+            cv::Mat image(getMaze().getHeight() * 3, getMaze().getWidth() * 3, CV_8UC3, cv::Scalar(0, 0, 0));
+            // cv::Mat image(getMaze().getWidth() * 3, getMaze().getHeight() * 3, CV_8UC3, cv::Scalar(0, 0, 0));
+            getMaze().changeMaze(0.0001, 0.0, image);
             // Each object consider it's choice
             for (auto &object : getObjects())
             {
@@ -193,6 +208,7 @@ public:
             // // Assign the encoded image to the output parameter
             // encodedImage = base64Image;
 
+            // cv::resize(image, image, cv::Size(), 1.0, 1.0, cv::INTER_CUBIC);
             std::vector<uchar> buf;
             cv::imencode(".jpg", image, buf);
             auto *enc_msg = reinterpret_cast<unsigned char *>(buf.data());

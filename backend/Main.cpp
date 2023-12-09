@@ -73,6 +73,7 @@ int main()
                          double diffLevel = jsonDoc["diffLevel"].GetInt() / 100.0;
                          int distance = jsonDoc["distance"].GetInt();
                          Problem problem(numObject, {static_cast<int>(sizeMaze / 1.75), sizeMaze}, diffLevel, distance);
+                        // Problem problem(numObject, {sizeMaze, sizeMaze}, diffLevel, distance);
                          text_result = problem.solve(encodedImage);
 
                          currentWork = false;
@@ -92,10 +93,10 @@ int main()
                          }
                          currentWork = true;
                          res.set_header("Access-Control-Allow-Origin", "http://localhost:3000");
-                         // Lấy dữ liệu từ body của request
-                         data = req.body;
+                         Problem problem(100);
+                         text_result = problem.solve(encodedImage);
                          // In dữ liệu lên console
-                         std::cout << "Received data from React: " << data << std::endl;
+                         std::cout << "Received request from React: " << data << std::endl;
                          // Phản hồi về React
                          res.set_content("Data received successfully", "text/plain");
                          currentWork = false; 
