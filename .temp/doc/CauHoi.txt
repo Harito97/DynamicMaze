@@ -1,0 +1,18 @@
+Input bai toan:
+?? La gi 
++ So tai san - 
+Ty le lai cao nhat ma ty le rui ro la min.
+
+-> Tham so ma nhom ban cho nguoi dung lua chon: chi la so tien muon dau tu nap vao: < 17
+
+??? Muon rui ro la Min thi chang phai chon tai san an toan nhat sao. 
+
+--> Can co 1 lua chon cho nguoi dung la: cho nguoi dung lua chon rui ro toi thieu va rui ro toi da co the chap nhan.
+
+Cau hoi: Input cua cac ban cho phep nguoi dung nhap vao 1 tham so la so tien nguoi dung nhap vao:
+Tuy nhien Muon rui ro la Min thi chang phai chon tai san an toan nhat sao. Eg: gui ngan hang van cho lai ma rui ro la min.
+
+Cac nha dau tu biet can can bang giua ty le rui ro va ty le loi nhuan. 
+1 nha dau tu ho se quan tam den ca 2 tham so cua input nay. viec nguoi dung chi co 1 lua chon cho tham so la so tien loi nhuan.
+-> Ngay tu dau input bai toan nen la: So tien muon dau tu, Rui ro toi thieu nguoi dung muon, Rui ro toi da nguoi dung muon.
+

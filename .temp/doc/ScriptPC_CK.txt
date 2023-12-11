@@ -1,0 +1,66 @@
+1. Phân công công việc:
+
+Xin chào thầy và các bạn, em giới thiệu em là PNH
+
+Nhóm làm giải thuật A* và ACO cho Dynamic Maze: Duc & DAnh 
+
+Đo số liệu ... : Thang 
+
+Giải thuật tính toán trên Dynamic Maze, viết API và frontend cho hệ thống.
+
+2. Đặt về đề về mục đích bài toán.
+
+Input: Có 1 cấu trúc Maze có thể thường xuyên thay đổi, nhiều object di chuyển từ điểm đầu đến điểm đích.
+
+Output: Đảm bảo các object này di chuyển đến đích thành công or hạn chế tối đa việc các object bị mắc kẹt.
+
+Như gk nhóm mk từng nói về bài toán đảm bảo người cứu hỏa đến được vị trí nạn nhân nhanh nhất cũng như đảm bảo sự an toàn của người lính cứu hỏa khi di chuyển trong
+môi trường hỏa hoạn có cấu trúc liên tục thay đổi.
+
+Nguồn gốc em nghĩ đến bài toán này đó là vụ cháy ở Thanh Xuân -> ... liên quan j jj đến mk
+
+Mở rộng bài toán có thể ở quy mô cứu hộ toàn thành phố ví dụ như hỏa hoạn ở Hawaii, hay trong thế chiến 2 Tokyo chủ yếu là nhà gỗ đã bị bom lửa của Mỹ thiêu rụi quy mô toàn thành phố.
+
+Sau đây là: phần giới thiệu về các phương pháp đã có được trình bày bởi bạn Trần Minh Đức
+Trình bày giải pháp ...
+Tuần tự các cách ...
+
+Đức Anh // 
+và nói về cách gộp chung ACO và A* cho ...
+
+Thắng nói về kết quả trên static maze ...
+
+Thiết kế ứng dụng và luồng giao diện.
+
+Backend và Frontend: Frontend gửi dữ liệu request về cho backend.
+Dữ liệu được trích xuất được lấy trực tiếp từ RAM lên cho frontend hiển thị realtime lên lấy được lợi thế của tốc độ đọc ghi 
+
+Demo sản phẩm.
+
+Kết luận:
+
++   Điểm yếu: Phương pháp chuẩn bị cho giải thuật ở Static Maze còn lâu: tiêu biểu là ACO. 
+Ngoài ra do để truyền data giữa frontend và backend ngay trên RAM vơí các ngôn ngữ khác nhau như C++ truyền cho ReactJS
+nên em có sử dụng các thư viện C++ khó cài đặt trên Windows do hầu hết HDH dùng cho máy chủ là Linux nên ban đầu em code không để ý nó khó cài đặt trên Windwos
+
++   Khắc phục: Thiết kế lại cấu trúc dữ liệu Maze dạng ma trận hiện tại (có ưu điểm dễ update trạng thái của maze) -> thành cấu trúc Node thì qua đó có thể giúp ACO và A* chạy nhanh hơn ở bước static maze.
+
+Ở điểm yếu hiện tại là: thư viện khó cài đặt trên Windows thì bọn em sẽ dự định đặt máy chủ backend riêng ở server riêng, như vậy phía người dùng chỉ cần tải xuống frontend và không cần cài đặt Arch.
+
++   Hướng phát triển tương lai: Trong báo cáo nhóm mk có viết ngắn gọn là - tăng sõ chiều của maze, cho nhiều điểm bắt đầu và nhiều điểm kết thúc.
+
+Mọi người nghe thấy mơ hồ phải không ạ. Cụ thể mọi người có thể có nhiều mục tiêu, mỗi 1 mục tiêu là 1 chiều không gian. Vậy giả sử 8 tỷ người trên TD có mục tiêu như sống lâu, nhiều tiền, có người thân, gia đình,...
+Như vậy bài toán nhiều chiều nhiều object nhiều điểm xuất phát và nhiều điểm kết thúc tương đương trở thành giúp 8 tỷ người đạt được mục đích của họ sao cho thời gian đạt được mục tiêu của mỗi người là min và nhiều người đạt được mục tiêu của họ nhất có thể.
+
+1 hướng phát triển khác mà nhóm mk nghĩ ra đó là: tỉa bớt các cạnh kết nối thừa trong mô hình mạng neut. Mỗi khi mô hình nhận vào 1 input và nó cần cho ra 1 output và cần được đánh giá là kết quả đó có hiệu quả không.
+Như vậy sau khi chạy thử cho nhiều object đến đích ta có thể đánh giá tầm quan trọng của 1 kết nối trong mạng và quyết định có nên giữ lại nó hay không.
+
+
+4 điểm bổ sung
+
+con số 77 - mỗi người cùng đến đích
+maze sụp đổ dần và cơ hội mỗi ng 1 ít đi
+1 object mắc kẹt cũng như 1 ng mắc khủng hoảng trong cuộc đời và không tìm thấy lỗi thoát. -> biết chấp nhận bị mắc kẹt -> có cho 1 mục tiêu mới và biết đâu trong không gian n+1 chiều mới bạn dễ đến đích hơn
+điều cuối cùng: kiếm cho mk những con kiến đồng hành ...
+
+
